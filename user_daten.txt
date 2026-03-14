@@ -1,3 +1,0 @@
-Name: Henri
-Alter: 33
-Hobby: Segeln

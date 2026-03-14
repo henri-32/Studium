@@ -1,2 +1,0 @@
-2026-03-12 12:12:01,848-9322-INFO-User Daten in File geschrieben
-2026-03-12 12:12:01,849-9322-INFO-dict befüllt

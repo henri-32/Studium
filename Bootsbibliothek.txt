@@ -1,6 +1,0 @@
-Bootstyp Invicta 
-Länge: 8.06
-Füllstand Wasser: 0.0Bootstyp Contessa 
-Füllstände nach Wasser Bunkern: 
-Invicta: 70.0
-Contessa: 30.0
