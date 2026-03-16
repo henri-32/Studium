@@ -1,0 +1,108 @@
+========================
+PYTHON PEP-8 QUICK SHEET
+========================
+
+INDENTATION
+- 4 spaces
+- Never tabs
+
+LINE LENGTH
+- Code: 79 chars
+- Comments/docstrings: 72 chars
+
+BLANK LINES
+- 2 lines before top-level classes/functions
+- 1 line between class methods
+
+IMPORTS
+Order:
+1. standard library
+2. third-party
+3. local modules
+
+Example:
+
+import os
+import sys
+
+import numpy as np
+
+from mymodule import MyClass
+
+
+NAMING
+
+variables, functions:
+    snake_case
+
+classes:
+    PascalCase
+
+constants:
+    UPPER_CASE
+
+private:
+    _leading_underscore
+
+
+SPACING
+
+GOOD:
+    x = a + b
+    func(a, b)
+
+BAD:
+    x=a+b
+    func( a , b )
+
+
+COMPARISONS
+
+Use:
+    if x is None
+    if x is not None
+
+NOT:
+    if x == None
+
+Use:
+    if flag:
+NOT:
+    if flag == True
+
+
+CONTAINERS
+
+GOOD:
+    if items:
+
+BAD:
+    if len(items) > 0
+
+
+FUNCTION STYLE
+
+- keep functions small
+- one responsibility
+- avoid deep nesting
+- prefer early return
+
+Example:
+
+    if not valid:
+        return
+
+    process(data)
+
+
+DOCSTRINGS
+
+Use triple quotes:
+
+    def func():
+        """Short description"""
+
+
+FINAL RULE
+
+Consistency within a project matters more than strict PEP-8.
