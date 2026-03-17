@@ -10,7 +10,6 @@ class Chapter(Enum):
     Protokollierung = 6
     OOP_Einfuerung = 7
 
-
 activeChapters = {Chapter.Funktionen}
 
 # Chapter Datenstrukturen
@@ -183,8 +182,9 @@ if Chapter.Funktionen in activeChapters:
         return sum(x * y)
 
 
+# ============================================================================
 # =============================================================================
-# Chapter Schleifen
+# =============================================================================
 # =============================================================================
 if Chapter.Schleifen in activeChapters:
     list_1 = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -200,9 +200,9 @@ if Chapter.Schleifen in activeChapters:
             continue
         list_1.remove(i)
     print("list_1 enthält nur noch gerade Zahlen")
-
 # =============================================================================
-# Chapter IO
+# =============================================================================
+# =============================================================================
 # =============================================================================
 if Chapter.IO in activeChapters:
     user_name = input("Wie heißt du?: ")
@@ -216,9 +216,8 @@ if Chapter.IO in activeChapters:
     # Datei sicher öffnen
     with open("textzumeinlsen.txt", "r") as f:
         my_File_Content = myFile.read()
-
 # =============================================================================
-# Chapter Protokollierung
+#Protokollierung
 # =============================================================================
 if Chapter.Protokollierung in activeChapters:
     import logging
@@ -231,36 +230,33 @@ if Chapter.Protokollierung in activeChapters:
     logging.warning("Warunung")
     logging.error("Error")
     logging.critical("CriticalError")
-
     # das Loglevel kann in der config angepasst werden, dann werden alle
     # Ebenen hierarchisch bis zum angegebenen
-    # level geloggt
+    #level geloggt 
 
-    logging.debug("Nachricht")
-    logging.info("Info")
-    logging.warning("Warunung")
-    logging.error("Error")
-    logging.critical("CriticalError")
+    logging.debug("Nachricht") 
+    logging.info("Info") 
+    logging.warning("Warunung") 
+    logging.error("Error") 
+    logging.critical("CriticalError") 
 
-    # das logging kann auch in Dateien passieren
-    logging.warning("Achtung")
-    logging.critical("CriticalError")
+    #das logging kann auch in Dateien passieren 
+    logging.warning("Achtung") 
+    logging.critical("CriticalError") 
 
-# =============================================================================
-# OOP/Einführung
-# =============================================================================
-if Chapter.OOP_Einfuerung in activeChapters:
-
-    class Vehicle:
+#=============================================================================
+#OOP/Einführung 
+#=============================================================================
+if Chapter.OOP_Einfuerung in activeChapters: 
+    class Vehicle: 
         n_wheels = 4
-        current_speed = 0.0
+        current_speed = 0.0 
+        def increase_speed(self, increment = 5.0): 
+            self.current_speed += increment 
 
-        def increase_speed(self, increment=5.0):
-            self.current_speed += increment
-
-    class Ford(Vehicle):
-        def __init__(self, model):
-            self.model = model
+    class Ford(Vehicle): 
+        def __init__(self, model): 
+            self.model= model
 
     car = Vehicle()
     car.increase_speed()
@@ -268,13 +264,15 @@ if Chapter.OOP_Einfuerung in activeChapters:
 
     myCar = Ford("F150")
     values = []
-    for name in dir(myCar):
-        if name.find("__") == -1:
+    for name in dir(myCar): 
+        if name.find("__") == -1: 
             values.append(getattr(myCar, name))
 
-    with open("aktuelleKlassenAttribute", "w") as f:
+    with open("aktuelleKlassenAttribute", "w") as f: 
         f.write(str(values))
 
-    # mit dir() können alle Methoden und Attribute eines Objekts abgefragt
-    # werden.
+    #mit dir() können alle Methoden und Attribute eines Objekts abgefragt
+	#werden. 
     print(dir(car))
+
+
