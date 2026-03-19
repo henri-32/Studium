@@ -9,8 +9,9 @@ class Chapter(Enum):
     IO = 5
     Protokollierung = 6
     OOP_Einfuerung = 7
+    Iteratoren = 8
 
-activeChapters = {Chapter.Funktionen}
+activeChapters = {Chapter.OOP_Einfuerung}
 
 # Chapter Datenstrukturen
 # =============================================================================
@@ -76,7 +77,6 @@ if Chapter.Datenstrukturen in activeChapters:
     # Liste erweitern
     list_1.append("Jenny")
 
-    # Element löschen
     del list_1[0]
 
     # Listen verknüpfen
@@ -217,7 +217,7 @@ if Chapter.IO in activeChapters:
     with open("textzumeinlsen.txt", "r") as f:
         my_File_Content = myFile.read()
 # =============================================================================
-#Protokollierung
+# Protokollierung
 # =============================================================================
 if Chapter.Protokollierung in activeChapters:
     import logging
@@ -232,47 +232,92 @@ if Chapter.Protokollierung in activeChapters:
     logging.critical("CriticalError")
     # das Loglevel kann in der config angepasst werden, dann werden alle
     # Ebenen hierarchisch bis zum angegebenen
-    #level geloggt 
+    # level geloggt
 
-    logging.debug("Nachricht") 
-    logging.info("Info") 
-    logging.warning("Warunung") 
-    logging.error("Error") 
-    logging.critical("CriticalError") 
+    logging.debug("Nachricht")
+    logging.info("Info")
+    logging.warning("Warunung")
+    logging.error("Error")
+    logging.critical("CriticalError")
 
-    #das logging kann auch in Dateien passieren 
-    logging.warning("Achtung") 
-    logging.critical("CriticalError") 
+    # das logging kann auch in Dateien passieren
+    logging.warning("Achtung")
+    logging.critical("CriticalError")
 
-#=============================================================================
-#OOP/Einführung 
-#=============================================================================
-if Chapter.OOP_Einfuerung in activeChapters: 
-    class Vehicle: 
-        n_wheels = 4
-        current_speed = 0.0 
-        def increase_speed(self, increment = 5.0): 
-            self.current_speed += increment 
+# =============================================================================
+# OOP/Einführung
+# =============================================================================
+if Chapter.OOP_Einfuerung in activeChapters:
 
-    class Ford(Vehicle): 
-        def __init__(self, model): 
-            self.model= model
+    class Vehicle:
+        def __init__(self, wheels, speed, product_number, known_accidents):
+            self.wheels = wheels
+            # Privates Attribut semantischer Hinweis, dass es nicht 
+            # verändert werden sollte 
+            self._speed = speed 
+            # Geschützte Attribut darf nicht gelesen / verändert werden 
+            self.__product_number = product_number
+            # Geschützte Attribute mit Setter 
+            self.__known_accidents = known_accidents
 
-    car = Vehicle()
+        def increase_speed(self, increment=5.0):
+            self.current_speed += increment
+        
+        # Setter Methode für geschützte Attribute 
+        def setType (self, accidents):
+            self.__known_accidents = accidents
+        
+        def getAccidents (self, accidents):
+            return self.__known_accidents
+
+    class Ford(Vehicle):
+        def __init__(self, model, color):
+            self.model = model
+            self.color = color
+
+        @property 
+        def description(self):
+            return self.model + " " + self.color
+        
+        def increase_speed(self, increment=7.5):
+            self.current_speed += increment
+
+    car = Vehicle(4, 5.0, 453687, 25)
     car.increase_speed()
     print(car.current_speed)
-
-    myCar = Ford("F150")
     values = []
-    for name in dir(myCar): 
-        if name.find("__") == -1: 
-            values.append(getattr(myCar, name))
-
-    with open("aktuelleKlassenAttribute", "w") as f: 
+    myCar = Ford("F150", "blue")
+    values = []
+	# mit dir können alle Attribute eines Objekts ausgegeben werden 
+    for name in dir(myCar):
+        values.append(getattr(myCar, name))
+    with open("aktuelleKlassenAttribute", "w") as f:
         f.write(str(values))
+	# description ist wie oben definiert eine methode und benötigt ()
+    print(myCar.description())
+	# mit @property werden Methoden wie Atrribute behandelt
+    print(myCar.description)
+    print("test")
+	# help() gibt die Informationen zur Klassenvererbung aus 
+    help(myCar)
+    print(isinstance(car, Vehicle))
+    print(issubclass(Ford, Vehicle))
+    # Methodenüberschreibung ist, wenn eine Subklasse die Methoden der Basiskl
+    # asse überschreibt
 
-    #mit dir() können alle Methoden und Attribute eines Objekts abgefragt
-	#werden. 
-    print(dir(car))
 
+#============================================================================
+# Iteratoren 
+#=============================================================================
 
+if Chapter.Iteratoren in activeChapters: 
+    # Range funktioniert von bis Schritte
+    my_range = list(range(0, 20, 3)) 
+    # Den Iterator gezielt aufrufen 
+    my_iter = iter(my_range)
+    # Den Iterator gezielt einen weiter schieben 
+    next(my_iter)
+    # Prüfen ob ein Objekt ein Iterator ist. Ein Iterator ist nicht gleich 
+    # einem iterierbaren Objekt. Man kann auch über Listen etc. iterieren. 
+    # die haben aber nicht die __next__ Funktion 
+    hasattr(my_iter, "__next__")
