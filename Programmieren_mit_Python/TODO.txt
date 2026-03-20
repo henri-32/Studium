@@ -1,0 +1,2 @@
+die occupied_space methoden der objekte muss im programm irgendwo gespeichert werden, damit bekannt ist welcher raum von welchen objekten eingenommen wird, damit kollisionen erkannt werden. 
+die müssen im loop geupdated werden. 
