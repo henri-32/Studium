@@ -1,0 +1,14 @@
+die occupied_space methoden der objekte muss im programm irgendwo gespeichert werden, damit bekannt ist welcher raum von welchen objekten eingenommen wird, damit kollisionen erkannt werden. 
+die müssen im loop geupdated werden. 
+============================================================================================================================
+kanonen könnten ein gutes Beispiel für composition sein. schiffe / türme haben kanonen. 
+============================================================================================================================
+das modell des schießens und das schadensmodell könnten eigene klassen sein, um das erben von mehreren klassen zu demonstrieren
+zwar wären sowohl schiffe als auch türme dann game objects und würden von den modellen erben, das könnte aber begründet sein, weil 
+das schadensmodell semantisch nicht nach oben über die s/t passt. damit kann man dann zeigen, dass modularer code kein eigenes teil 
+im physischen und semantischen sinne sein muss, sondern so eine kombination von eigenschaften möglich wird. 
+============================================================================================================================
+Erklären warum occupied space kein setter / updater braucht.
+
+auf mro bei klassen eingehen, die von mehreren erben 
+

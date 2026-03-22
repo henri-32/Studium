@@ -1,0 +1,82 @@
+1.) Line 3, column 375, Rule ID: GERMAN_SPELLER_RULE premium: false prio=-3
+Message: Möglicher Tippfehler gefunden.
+Suggestion: ihre; hier; ihr; ihren; ihrer
+...die Umsetzung der beschriebenen Konzepte und ihire Anwendung zur Problemlösung in der Praxis di...
+                                                ^^^^^                                             
+
+2.) Line 4, column 99, Rule ID: GERMAN_SPELLER_RULE premium: false prio=-3
+Message: Möglicher Tippfehler gefunden.
+Suggestion: Diskussion
+...en Umsetzung, sondern auch in der kritischen Disskussion getroffener Designentscheidungen. Insbesonde...
+                                                ^^^^^^^^^^^                                             
+
+3.) Line 5, column 225, Rule ID: GERMAN_SPELLER_RULE premium: false prio=-3
+Message: Möglicher Tippfehler gefunden.
+Suggestion: diskutiert; disputiert; diskutier; diskutiere; diskutierst
+...ziten Folgen aus diesen Designentscheidungen disskutiert werden.   # 2. Theorethische Grundlagen ## 2...
+                                                ^^^^^^^^^^^                                             
+
+4.) Line 7, column 6, Rule ID: GERMAN_SPELLER_RULE premium: false prio=-3
+Message: Möglicher Tippfehler gefunden.
+Suggestion: Theoretische; Theoretisch; Theoretischer; Theoretisches; Theoretischem
+...ignentscheidungen disskutiert werden.   # 2. Theorethische Grundlagen ## 2.1 Paradigmen des Programmier...
+                                                ^^^^^^^^^^^^^                                             
+
+5.) Line 9, column 212, Rule ID: GERMAN_SPELLER_RULE premium: false prio=-3
+Message: Möglicher Tippfehler gefunden.
+Suggestion: Siesta; Gäbest; Seiest; Säbelst; Säbelt
+...lick über wichtige Paradigmen liefert Robert Sebesta in seinem Buch "Concepts of Programming Lang...
+                                                ^^^^^^^                                             
+
+6.) Line 11, column 1, Rule ID: DE_CASE premium: false
+Message: Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben.
+Suggestion: es
+...of Programming Languages".  . [@sebesta2016] Es lässt sich grundlegend zwischen imperativen ...
+                                                ^^                                             
+More info: https://dict.leo.org/grammatik/deutsch/Rechtschreibung/Regeln/Gross-klein/index.html
+
+7.) Line 13, column 1, Rule ID: COMMA_IN_FRONT_RELATIVE_CLAUSE premium: false prio=-13
+Message: Sowohl angehängte als auch eingeschobene Relativsätze werden durch Kommas vom Hauptsatz getrennt.
+Suggestion: Programme, die
+...i mittels expliziter Anweisungen gesteuert.  Programme die wiederum einem deklarativen Paradigma folgen...
+                                                ^^^^^^^^^^^^^                                             
+
+8.) Line 18, column 11, Rule ID: DE_AGREEMENT premium: false prio=-1
+Message: Möglicherweise passen das Nomen und die Wörter, die das Nomen beschreiben, grammatisch nicht zusammen.
+Suggestion: die logische Programmierung
+... hauptsächlich auf formaler Logik  Programme die logischer Programmierung folgen stellen dann Sammlungen von Fakten un...
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                             
+More info: https://languagetool.org/insights/de/beitrag/deklination/
+
+9.) Line 18, column 97, Rule ID: WHITESPACE_RULE premium: false prio=-14
+Message: Möglicher Tippfehler: mehr als ein Leerzeichen hintereinander
+Suggestion:  
+...en dann Sammlungen von Fakten und Regeln dar,  welche das System interpretiert. Programme si...
+                                                ^^                                             
+
+10.) Line 18, column 97, Rule ID: DOPPELTES_LEERZEICHEN[1] premium: false prio=-14
+Message: Hier scheint ein Leerzeichen zu viel zu sein.
+Suggestion:  
+...en dann Sammlungen von Fakten und Regeln dar,  welche das System interpretiert. Programme si...
+                                                ^^                                             
+More info: https://languagetool.org/insights/de/beitrag/grammatik-leerzeichen/#was-soll-an-der-verwendung-des-leerzeichens-schwierig-sein
+
+11.) Line 18, column 170, Rule ID: INSOFERN_ALS_DASS[2] premium: false
+Message: Auf ‚insofern‘ folgt gewöhnlich die Konjunktion „als“.
+Suggestion: als
+...tiert. Programme sind dann insofern nutzbar, dass ihnen Fragen gestellt werden können, welche ...
+                                                ^^^^                                             
+More info: https://languagetool.org/insights/de/beitrag/rechtschreibung-insofern-insoweit/
+
+12.) Line 18, column 325, Rule ID: WHITESPACE_RULE premium: false prio=-14
+Message: Möglicher Tippfehler: mehr als ein Leerzeichen hintereinander
+Suggestion:  
+...ik beantworten können. [@sebesta2016, S. 714]    Zu den wichtigsten imperativen Paradigmen g...
+                                                ^^                                             
+
+13.) Line 20, column 71, Rule ID: GERMAN_SPELLER_RULE premium: false prio=-3
+Message: Möglicher Tippfehler gefunden.
+Suggestion: objektorientierte; Objektorienttiere; objektorientiert; objektorientierten; objektorientierter
+...tiven Paradigmen gehören die prozedurale und objektorientiere Programmierung.     # 3. Beispielprogramm ##...
+                                                ^^^^^^^^^^^^^^^^                                             
+Time: 11954ms for 24 sentences (2.0 sentences/sec)
