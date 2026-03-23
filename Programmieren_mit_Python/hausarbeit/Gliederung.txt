@@ -1,4 +1,7 @@
 1. Einleitung
+    1.1 Zielsetzung
+    1.2 Grundidee des Beispielprogramms
+    1.3 Verwendete Klassen 
 
 2. Theoretische Grundlagen 
     2.1 Paradigmen des Programmierens
@@ -7,18 +10,18 @@
         2.2.2 Kapselung 
         2.2.3 Vererbung / Komposition
         2.2.4 Polymorphie
-    2.3 Die SOLID Prinzipien 
-    2.4 Objektorientiertes Sprachdesign von Python
+    (2.3 Die SOLID Prinzipien) 
+    (2.4 Objektorientiertes Sprachdesign von Python)
 
-3. Beispielprogramm
-    3.1 Grundidee
-    3.2 Verwendete Klassen und ihre semantischen Beziehungen 
-    3.3 Nutzung von Methodenüberschreibungen zur Spezialisierung
- 	3.4 APIs für die Ablaufsteuerung 
-    3.5 Begründungen der Designentscheidungen 
-    3.5 Details der Implementierung 
+   (Beispielprogramm
+    //3.1 Grundidee
+    //3.2 Verwendete Klassen und ihre semantischen //Beziehungen 
+    //3.3 Nutzung von Methodenüberschreibungen zur ////Spezialisierung
+ 	//3.4 APIs für die Ablaufsteuerung 
+    //3.5 Begründungen der Designentscheidungen 
+    //3.5 Details der Implementierung) 
 
-4. Disskussion
+4. Diskussion
     4.1 Setzen von Klassengrenzen 
     4.2 Mehrfachvererbung und ihre Nebenwirkungen 
     4.3 Alternative Lösungsansätze für Problemstellungen im Beispielcode

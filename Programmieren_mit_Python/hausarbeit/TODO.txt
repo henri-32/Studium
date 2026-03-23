@@ -12,3 +12,7 @@ Erklären warum occupied space kein setter / updater braucht.
 
 auf mro bei klassen eingehen, die von mehreren erben 
 
+
+Ausrichtungsproblematik der Schiffe o
+
+Überschneidung von occupied space sauber erkennen, nicht nur obs gleich ist. über das Tupel in occupied space
