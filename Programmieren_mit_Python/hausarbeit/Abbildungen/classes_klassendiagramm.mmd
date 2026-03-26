@@ -1,0 +1,55 @@
+classDiagram
+    class GameObject {
+        <<abstract>>
+        +set_velocity(speed, heading_deg) : None
+        +update() : None
+    }
+
+    class DamageModel {
+        <<abstract>>
+        +damage(damage) : None
+        +update() : None
+        +check_for_collision() : None
+    }
+
+    class CollisionModel {
+        +update() : None
+        +check_for_collision(object_to_check) : None
+    }
+
+    class Rock
+    class SandBank
+
+    class CannonBall {
+        +check_for_collision() : None
+    }
+
+    class Cannon {
+        +shoot(x, y, heading)
+    }
+
+    class Fortress {
+        +update() : None
+        +shoot()
+    }
+
+    class Ship {
+        +set_heading(heading) : None
+        +set_velocity(speed, heading_deg) : None
+        +check_for_collision() : None
+        +shoot()
+        +update() : None
+    }
+
+    GameObject <|-- Rock
+    GameObject <|-- SandBank
+    GameObject <|-- CannonBall
+    GameObject <|-- Fortress
+    GameObject <|-- Ship
+
+    DamageModel <|-- Fortress
+    DamageModel <|-- Ship
+
+    CannonBall --> CollisionModel : nutzt API
+    Fortress --> CollisionModel : nutzt API
+    Ship --> CollisionModel : nutzt API
