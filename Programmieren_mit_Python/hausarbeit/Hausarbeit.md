@@ -164,31 +164,35 @@ In DamageModel `__init__()` wird ebenfalls `super().__init__(...)` aufgerufen, d
 
 # 3. Diskussion
 ## 3.1 Wann ist ein Objekt eine Klasse?-Probleme intuitiver Objektmodellierung
-Objektorientierte Programmierung ermöglicht Semantik, Verantwortung und Verhalten in Objekten zu bündeln. Das ist relativ ähnlich zur intuitiven Beschreibung realer Objekte (Schiffe, Autos, Tiere etc.). Alltagsnahe Beispiele, wie "Ein Schiff hat eine Kanone und kann damit schießen" können leicht als Klasse in die Vererbungshierarchie integriert werden. Diese Nähe zum intuitiven Verständnis von Objekten kann insofern irreführend sein, dass nicht jede sprachlich identifizierbare Entität sinnvoll als Klasse modelliert werden sollte. 
-Bei Betrachtung der Klasse Cannon lässt sich feststellen, dass ihre Funktionalität ausschließlich in der Instanzierung von CannonBall Objekten und semantisch in der Fähigkeit "Schießen" liegt.
-Das Verhalten "Schießen" wiederum ist eng an die Klassen Ship und Fortress gebunden. Deshalb lässt sich im Beispielprogramm schwerlich begründen, warum Cannon als eigene Klasse modelliert werden sollte. 
-Sie kapselt damit kein eigenes Verhalten sondern stellt lediglich einen indirekten Aufrufmechanismus dar. 
-Das zeigt sich auch an der Implementierung von ship.shoot(), welche lediglich self._cannon.shoot() aufruft. 
-Die Designentscheidung hat hier dazu geführt, dass zusätzliche Abstraktion und indirekte Struktur eingeführt wird, ohne dass der Mehrwert von Komplexitätsreduktion erreicht wird. 
+Objektorientierte Programmierung ermöglicht es Semantik, Verantwortung und Verhalten in Objekten zu bündeln. Das weist große Nähe zur intuitiven Beschreibung realer Objekte (Schiffe, Autos, Tiere etc.) auf. Alltagsnahe Beispiele wie „Ein Schiff hat eine Kanone und kann damit schießen“ lassen sich leicht als Klassen in eine Vererbungshierarchie integrieren. Diese Nähe zum intuitiven Verständnis kann jedoch irreführend sein, da nicht jede sprachlich beschreibbare Entität sinnvoll als Klasse modelliert werden sollte.
+Bei Betrachtung der Klasse Cannon zeigt sich, dass ihre Funktionalität ausschließlich in der Instanziierung von CannonBall Objekten und semantisch in der Fähigkeit „Schießen“ liegt. 
+Das Verhalten „Schießen“ ist dabei eng an die Klassen Ship und Fortress gebunden. Daher lässt sich im Beispielprogramm nicht überzeugend begründen, warum Cannon als eigene Klasse modelliert werden sollte.
+Sie kapselt kein eigenständiges Verhalten, sondern stellt lediglich einen indirekten Aufrufmechanismus dar. Das zeigt sich auch an der Implementierung von ship.shoot(), welche lediglich self._cannon.shoot() aufruft.
+Die Designentscheidung führt dazu, dass zusätzliche Abstraktion und indirekte Struktur eingeführt werden, ohne Mehrwert in Form von Komplexitätsreduktion zu erreichen. Dieses Beispiel verdeutlicht, dass die Existenz einer semantisch zuverlässig beschreibbaren Entität kein ausreichendes Argument für ihre Modellierung als Klasse darstellt.
 
-## 3.2 Komposition vs. Vererbung 
-Im Beispielprogramm wird DamageModel als eigene Klasse definiert, was sich insofern rechtfertigen lässt, als dass sie eine Spielmechanik mit eigener Zuständigkeit kapselt. Die Integration in die Klassenhierarchie ist jedoch problematisch. Ship erbt von GameObject und DamageModel, was impliziert, dass Ship eine DamageModel ist. Das ist nicht korrekt, da Ship lediglich dessen Mechanik nutzt. 
-Ein konkretes Problem, was daraus folgt ist, dass die Schadenslogik Teil aller potentiellen von Ship oder Fortress erbenden Klassen wird. 
-Auch der Umstand, dass sich die Methoden der Basisklassen von Ship nicht sauber mit super() kombinieren lassen, spricht dafür, dass die Klassenbeziehungen unstimmig sind (siehe auch Kapitel 3.3).
-
-Anders als das DamageModel wird das CollisionModel über Komposition in die entsprechenden Klassen integriert. Das vermeidet zwar die beim DamageModel entstandenen Probleme, ist jedoch in anderer Hinsicht nicht sinnvoll umgesetzt. 
-Die Kollisionserkennung stellt nun fälschlicherweise eine objektbezogene Eigenschaft dar, obwohl sie tatsächlich eine systemweite Mechanik ist, welche die Objekte als Arbeitsgrundlage benötigt. 
-Bei der Implementierung im Beispielprogramm wird die Übergabe der Liste aller Objekte an alle Instanzen die DamageModel nutzen nötig. Das liegt daran, dass DamageModel das CollisionModel als Abhängigkeit fordert. 
-Der Umstand, dass die Instanzierung eines Ships es erfordert Kenntnis über alle existierenden GameObjects weiterzugeben spricht klar dafür, dass Verantwortung falsch zugewiesen ist. 
-Die Systemverantwortung (Kollisionsüberwachung) wird hier dezentralisiert, Objekte übernehmen Aufgaben, die auf höherer Systemebene liegen sollten und eine enge Koppelung von globaler Spiellogik mit Objekten entsteht.
-Das erschwert Nachvollziehbarkeit und Testbarkeit. 
-Es zeigt sich, dass die Verwendung von Vererbung und Komposition noch lange nicht zu geeigneter Modellierung führt. Relevant ist die korrekte Zuodrnung von Verantwortlichkeiten im Gesamtsystem.
-Vererbung setzt eine klare "ist ein" Beziehung voraus, die im Beispielprogramm an keiner Stelle wirklich gegeben ist. 
+## 3.2 Vermischung von Typ und Zustand als Modellierungsfehler
+Die Klasse GameObject hält das Zustandsattribut _movable, welches als Bedingung für die Ausführung der Bewegungslogik in der Methode update() dient und somit die Bewegungsfähigkeit eines Objekts modelliert.
+Die Schwierigkeit bei der Modellierung dieser Eigenschaft liegt darin, dass semantisch eng miteinander verbundene Konzepte auf unterschiedlichen Systemebenen abgebildet werden müssten.
+Die Zustandsvariable _movable beschreibt zum einen die grundlegende Fähigkeit eines Objekttyps, sich in der Spielwelt bewegen zu können. Zum anderen wird sie als veränderlicher Zustand verwendet, der dynamisch durch das DamageModel beeinflusst werden kann, um Manövrierunfähigkeit zu simulieren.
+Im Beispielprogramm werden somit Typmerkmal, Verhalten und auf die Spielmechanik bezogener Zustand in einer einzigen Variable zusammengeführt. Zusätzlich wird diese Variable auf einer sehr hohen Ebene der Vererbungshierarchie definiert, um eine einheitliche Schnittstelle für das Schadensmodell bereitzustellen. 
+Diese Schnittstelle ist fachlich eine völlig andere Verantwortung und wird hier über die Basisklasse in sämtliche davon erbende Objekte strukturell integriert.
+Die Auswirkungen dieser Entscheidung zeigen sich insbesondere in den abgeleiteten Klassen. Objekte wie Rock oder SandBank, die sich konzeptionell nicht bewegen können, erben trotzdem Methoden und Attribute zur Bewegungssteuerung. Da dieses Verhalten für die Objekte nicht sinnvoll ist, wird es durch Überschreiben der Methode update() verhindert.
+Der Umstand, dass Funktionalitäten der Basisklasse entfernt werden müssen, stellt ein starkes Indiz dafür dar, dass keine ausreichend enge semantische Beziehung zwischen den Klassen besteht, um eine Modellierung durch Vererbung zu rechtfertigen.
+Darüber hinaus führt die Vermischung von Typmerkmal und Zustand zu impliziten Kopplungen im System. Änderungen an der Schadenslogik wirken sich direkt auf die Bewegungsfähigkeit aus, obwohl es sich konzeptionell um unterschiedliche Aspekte handelt. Dies erschwert die Erweiterbarkeit und reduziert Klarheit.
+Eine sauberere alternative Modellierung würde diese Ebenen explizit voneinander trennen. Die grundsätzliche Bewegungsfähigkeit könnte durch unterschiedliche Basisklassen, während der aktuelle Bewegungszustand unabhängig davon als dynamische Eigenschaft der Instanz geführt werden könnte. Die Bewegungslogik selbst ließe sich ähnlich zur Kollisionslogik als eigenständige Systemkomponente modellieren, die auf Grundlage der Instanzzustände arbeitet, anstatt implizit in der Vererbungshierarchie eingebunden zu sein.
 
 
+## 3.3 Falsche Verantwortungszuordnung durch Vererbung und Komposition
+Im Beispielprogramm wird DamageModel als eigene Klasse definiert, was sich im Gegesnatz zur Cannonproblematik insofern rechtfertigen lässt, als dass es eine Spielmechanik mit eigener Zuständigkeit kapselt. Die Integration in die Klassenhierarchie ist jedoch problematisch. Ship erbt von GameObject und DamageModel, was impliziert, dass Ship ein DamageModel ist. Dies ist nicht korrekt, da Ship lediglich dessen Mechanik nutzt.
+Ein daraus resultierendes Problem ist, dass die Schadenslogik zwingend Teil aller potenziellen von Ship oder Fortress erbenden Klassen wird.
+Auch der Umstand, dass sich die Methoden der Basisklassen von Ship nicht sinnvoll über super() kombinieren lassen, spricht dafür, dass die Klassenbeziehungen strukturell unstimmig sind.
+Im Gegensatz dazu wird das CollisionModel über Komposition in die entsprechenden Klassen integriert. Diese Entscheidung vermeidet die beim DamageModel entstehenden Probleme, ist jedoch in anderer Hinsicht ebenfalls nicht sinnvoll umgesetzt.
+Die Kollisionserkennung stellt keine objektspezifische Eigenschaft dar, sondern modelliert eine systemweite Mechanik, die mit der Summe aller GameObjects arbeitet. Durch die Integration in einzelne Objekte wird diese Systemverantwortung fälschlicherweise dezentralisiert.
+So erfordert die Instanziierung eines Ship, dass eine Liste aller existierenden GameObjects übergeben wird. Dies stellt einen klaren Hinweis für falsche Verantwortungszuordnung dar.
+Hierdrch entsteht eine enge Kopplung zwischen globaler Spiellogik und lokalen Objektinstanzen. Das erschwert die Nachvollziehbarkeit Testbarkeit des Systems.
+Es zeigt sich, dass weder die Verwendung von Vererbung noch von Komposition per se zu einer geeigneten Modellierung führt. Entscheidend ist die korrekte Zuordnung von Verantwortlichkeiten im Gesamtsystem. Insbesondere Vererbung setzt dabei eine konsistente „ist ein“-Beziehung voraus, die im vorliegenden Modell nicht gegeben ist.
 
-
-## 3.2 Nutzung von Mehrfachvererbung
+## 3.4 Mehrfachvererbung als Quelle von Komplexität
 Die MRO bringt nicht unerhebliche implizite Komplexität mit sich. Während die Initialisierung mit der MRO sinnvoll verkettet werden kann, stellt sich das für Methoden der Ablaufsteuerung schwieriger dar.   
 
 
@@ -198,6 +202,6 @@ Die MRO bringt nicht unerhebliche implizite Komplexität mit sich. Während die 
 - [ ] [@haberlein2024] muss aktuell evtl aus Literaturverzeichnis entfernt werden.
 - [x] Spezialisierung als Begriff bei Vererbung noch einbringen
 - [x] Diskusion shoot Methoden
-- [ ] Diskusion Rock überschreibt update mit pass hat also weniger Funktionalität (wiederspricht SOLID), was außerdem keinen Sinn macht, weil in GameObjects.update die movable Fähigkeit geprüft wird. Wenn man es allerdings mit super() aufrufen würde, wirkt es als würde rock bei update tatsächlich etwas tun + unnötiger Methodenaufruf, wo ich schon weiß, dass nix bei rum kommt -> Fazit falsche Abstraktionsebene von movable. von da in die Diskussion, dass movable aber Eine Fähigkeit ist, die man verlieren kann also Modellierung tiefer in der Vererbungshirarchie in den Typen auch kritisch ist.
+- [x] Diskusion Rock überschreibt update mit pass hat also weniger Funktionalität (wiederspricht SOLID), was außerdem keinen Sinn macht, weil in GameObjects.update die movable Fähigkeit geprüft wird. Wenn man es allerdings mit super() aufrufen würde, wirkt es als würde rock bei update tatsächlich etwas tun + unnötiger Methodenaufruf, wo ich schon weiß, dass nix bei rum kommt -> Fazit falsche Abstraktionsebene von movable. von da in die Diskussion, dass movable aber Eine Fähigkeit ist, die man verlieren kann also Modellierung tiefer in der Vererbungshirarchie in den Typen auch kritisch ist.
 - [ ] Diskusion DamageModel könnte abstract sein, wovon geerbt wird, sodass dann mit **kwargs auch DamageModel.update mit kooperativer Vererbung in die super() aufrufe integriert werden würde.
 - [ ] Diskussion kooperative update Methode 
