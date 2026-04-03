@@ -324,7 +324,6 @@ class Ship(GameObject, DamageModel):
     def update(self) -> None:
         super().update()
         self.check_for_collision()
-        DamageModel.update(self)
         self.apply_damage_to_abilities()
 
 

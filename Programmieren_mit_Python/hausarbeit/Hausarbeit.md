@@ -2,11 +2,11 @@
 ## 1.1 Zielsetzung
 In der folgenden Arbeit soll zur Teilaufgabe objektorientierter Programmierung (OOP) entsprechend der Aufgabenstellung ein Beispielprogramm entwickelt werden, welches die Prinzipien dieses Paradigmas veranschaulichen kann. Nach Darstellung der theoretischen Grundlagen und Konzepte soll dann auf der Basis des Beispielprogramms, die Umsetzung der beschriebenen Konzepte, sowie ihre Anwendung zur Problemlösung in der Praxis diskutiert werden. 
 Der Schwerpunkt soll dabei nicht nur in der technischen Umsetzung, sondern auch in der kritischen Diskussion getroffener Designentscheidungen liegen.
-Insbesondere sollen dabei die Möglichkeiten der Nutzung von Vererbung und Methodenüberschreibung zur Spezialisierung von Klassen gezeigt werden, und dabei die expliziten und impliziten Folgen aus diesen Designentscheidungen diskutiert werden. 
+Insbesondere sollen dabei die Möglichkeiten der Nutzung von Vererbung und  Methodenüberschreibung zur Spezialisierung von Klassen gezeigt werden, und dabei die expliziten und impliziten Folgen aus diesen Designentscheidungen diskutiert werden. 
 
 ## 1.2 Grundidee des Beispielprogramms 
 Zur Veranschaulichung dieser Kernprinzipien wird ein Programm entwickelt, welches als Teil eines hypothetischen Computerspiels verstanden werden kann.
-Die Grundidee ist, dass in einer zweidimensionalen Spielwelt segelnde Kriegsschiffe gesteuert werden können, welche auf gegnerische Schiffe schießen und diese versenken können. Zusätzliche Spielobjekte sind Sandbänke, Felsen und Festungen. Das entwickelte Programm konzentriert sich stark auf die semantischen Zusammenhänge zwischen den Objekten, den Schnittstellen, über welche sie miteinander interagieren und die Klassen-/ Vererbungshierarchien, welche genutzt werden um die Semantik zu modellieren. Es bietet dabei keine Implementierung von Spielmechaniken, welche für eine tatsächlich Nutzung notwendig wären, soll aber aufzeigen, wie Teilsysteme mit den implementierten Objekten interagieren könnten. 
+Die Grundidee ist, dass in einer zweidimensionalen Spielwelt segelnde Kriegsschiffe gesteuert werden können, welche auf gegnerische Schiffe schießen und diese versenken können. Zusätzliche Spielobjekte sind Sandbänke, Felsen und Festungen. Das entwickelte Programm konzentriert sich stark auf die semantischen Zusammenhänge zwischen den Objekten, den Schnittstellen, über welche sie miteinander interagieren und die Klassen-/ Vererbungshierarchie, welche genutzt wird um die Semantik zu modellieren. Es bietet dabei keine Implementierung von Spielmechaniken, welche für eine tatsächlich Nutzung notwendig wären, soll aber aufzeigen, wie Teilsysteme mit den implementierten Objekten interagieren könnten. 
 
 ## 1.3 Verwendete Klassen 
 Dazu werden die im Klassendiagramm, mit ihren öffentlichen Methoden (API), dargestellten Klassen verwendet.
@@ -32,9 +32,8 @@ Bei prozeduraler Programmierung steht die Ablaufsteuerung des Programms mit sequ
 Objektorientierte Programmierung hingegen fokussiert sich auf die Abstraktion von Daten und Datentypen. Dabei werden Daten und Verhalten gekapselt, wodurch Objekte entstehen. Diese können dann miteinander interagieren [@sebesta2016, S. 515]. 
 
 ## 2.2 Objektorientierte Programmierung
-
 ### 2.2.1 Kapselung  
-Kapselung bedeutet, dass Daten und die, auf diese Daten bezogenen Methoden, in einer Einheit gebündelt werden. Dies unterstützt die technische Trennung von Implementierung und Schnittstelle.
+Kapselung bedeutet, dass Daten auf diese Daten bezogenen Methoden, in einer Einheit gebündelt werden. Dies unterstützt die technische Trennung von Implementierung und Schnittstelle.
 [@voigt2010] stellen dar, dass die Nähe von Methoden zu den Daten, auf welchen sie operieren, eine zentrale Charakteristik von Objektorientierung ist. 
 Dabei ist Kapselung kein Konstrukt, welches exklusiv in objektorientierter Programmierung verwendet wird. In anderen Paradigmen findet die Kapselung unter anderem durch Modul- und Dateigrenzen statt [vgl @voigt2010, S. 172]. Bei objektorientierter Programmierung wird die Kapselung durch Sprachmechanismen explizit unterstützt, da auf die gekapselten internen Repräsentationen einer Einheit nur noch über definierte Schnittstellen zugegriffen werden kann. 
  
@@ -58,10 +57,10 @@ Durch den "property decorator" wird der Zugriff auf ein Attribut über eine Meth
 Ein Ausdruck wie instanz.x stellt nun einen Lesezugriff auf das instanz._x Attribut dar, während die Zuweisung instanz.x = ... ungültig wird, da x intern eine Methode darstellt, welcher kein Wert zugewiesen werden kann. Damit ist mit einer Mischung aus Konvention (instanz._x = ... ist immer technisch noch möglich) und technischer Umsetzung mittels "property decorator" eine Trennung zwischen interner Repräsentation und externer Nutzung erreicht.    
 
 ### 2.2.2 Abstraktion  
-Abstraktion ist ein Konzept, welches die Details, **wie** etwas funktioniert vor dem Nutzer versteckt, während ihm gleichzeitig ermöglicht wird, komplexe Funktionalität zu nutzen. Das Gesamtsystem wird also in seiner Komplexität auf ein Modell reduziert, also auf wesentliche Eigenschaften beschränkt. 
-Zur Veranschaulichung gibt es das Modell der Abstraktionsgrenze. Auf der einen Seite dieser Grenze steht die Nutzung der Abstraktion und auf der anderen Seite die Implementierung. Die Abstraktionsgrenze wird während der Softwareentwicklung definiert und die richtige Wahl der Abstraktionsebenen stellt ein wichtiges Qualitätsmerkmal dar [vgl. @jue].
+Abstraktion ist ein Konzept, welches die Details, **wie** etwas funktioniert vor dem Nutzer versteckt, während ihm gleichzeitig ermöglicht wird, komplexe Funktionalität zu nutzen. Das Gesamtsystem wird in seiner Komplexität auf ein Modell reduziert, also auf wesentliche Eigenschaften beschränkt. 
+Zur Veranschaulichung gibt es das Modell der Abstraktionsgrenze. Auf der einen Seite dieser Grenze steht die Nutzung der Abstraktion und auf der anderen Seite die Implementierung. Die Abstraktionsgrenze wird während der Softwareentwicklung durch die Entwickler definiert und die richtige Wahl der Abstraktionsebenen stellt ein wichtiges Qualitätsmerkmal dar [vgl. @jue].
 Abstraktion findet dabei auf unterschiedlichsten Ebenen statt und auch sie ist weder ein exklusives Konzept der objektorientierten Programmierung, noch der Informatik selbst. 
-Sie ist jedoch ein zentrales Konzept der Informatik und objektorientiertes Programmieren ermöglicht es, sehr granulare Abstraktionen zu definieren. Abstraktion stellt dabei vor allem ein Mittel gegen Komplexität dar [@sebesta_2016, S. 473]. 
+Sie ist jedoch ein zentrales Konzept der Informatik und objektorientiertes Programmieren ermöglicht es, individuelle, modulare und granulare Abstraktionen zu definieren. Abstraktion stellt dabei vor allem ein Mittel gegen Komplexität dar [@sebesta_2016, S. 473]. 
 Abstraktion und Kapselung wirken ähnlich, was dadurch verstärkt wird, dass sie oft durch dieselben Sprachmechanismen umgesetzt werden. 
 So führt eine Klassendefinition gleichzeitig zur Kapselung ihrer Attribute (Verbergen im technischen Sinne der Sichtbarkeit) als auch zu Abstraktion, da für den Nutzer zugrunde liegende Implemtierungsmechanismen abstrahiert werden. Dieser kann die komplexen Implementierungsmechanismus über den simplen Aufruf der Konstruktor Methode nutzen (Verbergen im Sinne von Komplexitätsreduktion durch Vereinfachung).
 Es können in der Informatik zwei grundlegende Abstraktionsarten unterschieden werden. Zum einen gibt es die Abstraktion von Daten und zum anderen die Abstraktion von Prozessen [@sebesta_2016, S. 473]. Die Abstraktion von Daten zeigt sich bereits auf der Ebene grundlegender Datentypen von Programmiersprachen. So wird zum Beispiel ein String in Python als abstrakter Datentyp bereitgestellt, dessen nicht unerheblich komplexe interne Repräsentation und Speicherverwaltung dem Nutzer verborgen bleibt.
@@ -96,7 +95,7 @@ Die Definition innerhalb einer anderen Klasse führt jedoch nicht zur Kompositio
 Der Begriff Polymorphie ist im Kontext von Software nicht ganz eindeutig, und wird in unterschiedlichen Quellen verschieden streng ausgelegt. Im sprachlichen Sinn bedeutet Polymorphie Vielgestaltigkeit. Die Polymorphie dient dabei bei objektorientierter Programmierung vor allem der "flexiblen Auswahl geeigneter Methoden identischen Namens anhand des Objekttyps und der Argumentenliste" [@steyer2024, S. 176]. 
 [@kang2010, S. 28] definieren Polymorphismus praxisorientiert als die Fähigkeit als Typ A zu erscheinen und genauso nutzbar zu sein, wie ein anderer Typ B. 
 Diese Definition scheint viele Mechaniken objektorientierter Programmierung zu beschreiben. 
-Um das Konzept differenziert darzustellen, soll zunächst einmal negativ abgegrenzt werden.
+Um das Konzept differenziert darzustellen, soll zunächst negativ abgegrenzt werden.
 Im Beispielprogramm ist die Methode shoot() sowohl als Instanzmethode der Klasse Cannon, als auch als Instanzmethode der Klasse Ship implementiert. 
 
 ![Instanzmethode der Klasse Ship](Abbildungen/shoot_ship.png){ width=60% }
@@ -104,8 +103,8 @@ Im Beispielprogramm ist die Methode shoot() sowohl als Instanzmethode der Klasse
 ![Instanzmethode der Klasse Cannon](Abbildungen/shoot_cannon.png){ width=70% }
 
 Die Sinnhaftigkeit dieser Implementierung wird später kritisch diskutiert. 
-Wird nun die Methode shoot() durch den Nutzer auf einer Instanz aufgerufen, gibt es intuitiv verstanden zwei Methoden mit identischem Namen. Die ausgeführte Implementierung wird während der Laufzeit durch den Interpreter aufgelöst. Das entspricht auf den ersten Blick der Definition von Polymorphismus, da eine Auswahl der Methode bei identischem  Methodennamen anhand des Objekttyps stattfindet. 
-Es ist jedoch zu bedenken, dass zwar beide Implementierungen von shoot() den gleichen Namen tragen, es sich faktisch jedoch um zwei unterschiedliche Methoden, welche nicht über die gleiche Schnittstelle abstrahiert sind, sondern isoliert und gekapselt in unterschiedlichen Klassen und Namensräumen definiert werden handelt. 
+Wird nun die Methode shoot() durch den Nutzer auf einer Instanz aufgerufen, gibt es augenscheinlich zwei Methoden mit identischem Namen. Die ausgeführte Implementierung wird während der Laufzeit durch den Interpreter aufgelöst. Das entspricht auf den ersten Blick der Definition von Polymorphismus, da eine Auswahl der Methode bei identischem  Methodennamen anhand des Objekttyps stattfindet. 
+Es ist jedoch zu bedenken, dass zwar beide Implementierungen von shoot() den gleichen Namen tragen, es sich faktisch jedoch um zwei unterschiedliche Methoden, welche nicht über die gleiche Schnittstelle abstrahiert sind, sondern isoliert und gekapselt in unterschiedlichen Klassen und Namensräumen definiert werden, handelt. 
 ship.shoot() und cannon.shoot() rufen zwei unterschiedliche Methoden mit unterschiedlicher Definition auf, welche im Beispielprogramm nicht technisch strukturell gleich, sondern lediglich semantisch eng miteinander verknüpft sind. 
 
 Polymorphie im engeren Sinn findet sich im Beispielprogramm bei der update() Methode. Diese wird das erste Mal in der Basisklasse GameObject definiert.
@@ -134,12 +133,12 @@ Würden die verschiedenen Implementierungen von update() lose verstreut über da
 
 ### 2.2.6 Abstrakte Klassen und Methoden 
 Wenn normale Klassen vereinfacht gesagt Baupläne für den Interpreter zum Instanzieren von Objekten sind, dann sind abstrakte Klassen Baupläne für den Programmierer zum Entwerfen von Klassen.
-In Python wird eine Klasse abstrakt, wenn sie von ABC erbt und mindestens eine abstrakte Methode beinhaltet. Das führt dazu, dass diese Klasse nicht mehr direkt instanzierbar ist. Das Prinzip ist im Beispielprogramm sowohl bei GameObject, als auch bei dem DamageModel umgesetzt. Die semantische Sinnhaftigkeit ist beim DamageModel besonders prägnant. Da es als Fähigkeit, bzw. Mechanik eines Objektes modelliert ist, hätte es ohne dieses keine eigenständige Bedeutung. Deswegen ist eine direkte Instanzierung unerwünscht. 
+In Python wird eine Klasse abstrakt, wenn sie von ABC erbt und mindestens eine abstrakte Methode beinhaltet. Das führt dazu, dass diese Klasse nicht mehr direkt instanzierbar ist. Das Prinzip ist im Beispielprogramm sowohl beim GameObject, als auch beim DamageModel umgesetzt. Die semantische Sinnhaftigkeit ist beim DamageModel besonders prägnant. Da es als Fähigkeit, bzw. Mechanik eines Objektes modelliert ist, hätte es ohne dieses keine eigenständige Bedeutung. Deswegen ist eine direkte Instanzierung unerwünscht. 
 Abstrakte Methoden haben die Eigenschaft, dass sie durch die Klasse, welche von der abstrakten Klasse erbt, implementiert werden **müssen**, wenn die erbende Klasse instanziert werden soll. Damit wird ein Vertrag definiert, der die Konsistenz der Implementierung in dieser Hinsicht garantiert.
 Bei dem DamageModel sind die check_for_collision() und apply_damage_to_abilities() Methoden abstrakt. Diese sollen garantieren, dass Objekte, welche das Schadensmodell integrieren, auch prüfen, ob es zu einer Kollision gekommen ist und das Schadensmodell angewendet werden muss.
-Diese Methoden sind als klassische abstrakte Methoden ausgelegt, welche lediglich die Schnittstelle und ihre Signatur festlegen.
+Diese Methoden sind als abstrakte Methoden ausgelegt, welche lediglich die Schnittstelle und ihre Signatur festlegen.
 Bei der oben dargestellten update() Methode der GameObject Klasse ist der abstractmethod decorator ebenfalls sinnvoll verwendet. Damit wird garantiert, dass alle von GameObject abgeleiteten Instanzen eine update() Methode zur Verfügung stellen. Deshalb kann über die Liste der GameObjects iteriert werden, ohne dass bei Aufruf die Gültigkeit des update() Aufrufes sichergestellt werden muss. 
-Durch diese abstrakte Methode wird zusätzlich ein Default-Verhalten bereit gestellt, welches übernommen, erweitert oder überschrieben werden kann. 
+Durch diese abstrakte Methode wird, anders als bei den o.g. Methoden, zusätzlich ein Default-Verhalten bereit gestellt, welches übernommen, erweitert oder überschrieben werden kann. 
 
 ### 2.2.7 Mehrfachvererbung und kooperative Methoden
 Mehrfachvererbung findet im Beispielprogramm bei den Klassen Ship und Fortress statt. An diesem Beispiel lässt sich die Komplexität von Mehrfachvererbung und die Notwendigkeit für kooperative Methoden zur sauberen Instanzierung aufzeigen. 
@@ -162,7 +161,7 @@ Daran wird sichtbar, dass super() technisch nicht zwingend die Methode der Elter
 Ohne den `super().__init__(...)` Aufruf in GameObject würde die MRO Kette dort enden. Dann könnten keine Parameter an DamageModel weitergegeben werden und die Initialisierung von mehreren Elternklassen wäre nicht möglich. 
 In DamageModel `__init__()` wird ebenfalls `super().__init__(...)` aufgerufen, damit weitere Klassen als zusätzliche Basisklassen möglich bleiben.
 
-# 3. Diskussion
+# 3. Diskussion von Designentscheidungen
 ## 3.1 Wann ist ein Objekt eine Klasse?-Probleme intuitiver Objektmodellierung
 Objektorientierte Programmierung ermöglicht es Semantik, Verantwortung und Verhalten in Objekten zu bündeln. Das weist große Nähe zur intuitiven Beschreibung realer Objekte (Schiffe, Autos, Tiere etc.) auf. Alltagsnahe Beispiele wie „Ein Schiff hat eine Kanone und kann damit schießen“ lassen sich leicht als Klassen in eine Vererbungshierarchie integrieren. Diese Nähe zum intuitiven Verständnis kann jedoch irreführend sein, da nicht jede sprachlich beschreibbare Entität sinnvoll als Klasse modelliert werden sollte.
 Bei Betrachtung der Klasse Cannon zeigt sich, dass ihre Funktionalität ausschließlich in der Instanziierung von CannonBall Objekten und semantisch in der Fähigkeit „Schießen“ liegt. 
@@ -175,12 +174,11 @@ Die Klasse GameObject hält das Zustandsattribut _movable, welches als Bedingung
 Die Schwierigkeit bei der Modellierung dieser Eigenschaft liegt darin, dass semantisch eng miteinander verbundene Konzepte auf unterschiedlichen Systemebenen abgebildet werden müssten.
 Die Zustandsvariable _movable beschreibt zum einen die grundlegende Fähigkeit eines Objekttyps, sich in der Spielwelt bewegen zu können. Zum anderen wird sie als veränderlicher Zustand verwendet, der dynamisch durch das DamageModel beeinflusst werden kann, um Manövrierunfähigkeit zu simulieren.
 Im Beispielprogramm werden somit Typmerkmal, Verhalten und auf die Spielmechanik bezogener Zustand in einer einzigen Variable zusammengeführt. Zusätzlich wird diese Variable auf einer sehr hohen Ebene der Vererbungshierarchie definiert, um eine einheitliche Schnittstelle für das Schadensmodell bereitzustellen. 
-Diese Schnittstelle ist fachlich eine völlig andere Verantwortung und wird hier über die Basisklasse in sämtliche davon erbende Objekte strukturell integriert.
+Diese Schnittstelle hat fachlich eine völlig andere Verantwortung und wird hier über die Basisklasse in sämtliche davon erbende Objekte strukturell integriert.
 Die Auswirkungen dieser Entscheidung zeigen sich insbesondere in den abgeleiteten Klassen. Objekte wie Rock oder SandBank, die sich konzeptionell nicht bewegen können, erben trotzdem Methoden und Attribute zur Bewegungssteuerung. Da dieses Verhalten für die Objekte nicht sinnvoll ist, wird es durch Überschreiben der Methode update() verhindert.
 Der Umstand, dass Funktionalitäten der Basisklasse entfernt werden müssen, stellt ein starkes Indiz dafür dar, dass keine ausreichend enge semantische Beziehung zwischen den Klassen besteht, um eine Modellierung durch Vererbung zu rechtfertigen.
 Darüber hinaus führt die Vermischung von Typmerkmal und Zustand zu impliziten Kopplungen im System. Änderungen an der Schadenslogik wirken sich direkt auf die Bewegungsfähigkeit aus, obwohl es sich konzeptionell um unterschiedliche Aspekte handelt. Dies erschwert die Erweiterbarkeit und reduziert Klarheit.
-Eine sauberere alternative Modellierung würde diese Ebenen explizit voneinander trennen. Die grundsätzliche Bewegungsfähigkeit könnte durch unterschiedliche Basisklassen, während der aktuelle Bewegungszustand unabhängig davon als dynamische Eigenschaft der Instanz geführt werden könnte. Die Bewegungslogik selbst ließe sich ähnlich zur Kollisionslogik als eigenständige Systemkomponente modellieren, die auf Grundlage der Instanzzustände arbeitet, anstatt implizit in der Vererbungshierarchie eingebunden zu sein.
-
+Eine sauberere alternative Modellierung würde diese Ebenen explizit voneinander trennen. Die grundsätzliche Bewegungsfähigkeit könnte durch unterschiedliche Basisklassen modelliert werden, während der aktuelle Bewegungszustand unabhängig davon als dynamische Eigenschaft der Instanz geführt werden könnte. Die Bewegungslogik selbst ließe sich ähnlich zur Kollisionslogik als eigenständige Systemkomponente modellieren, die auf Grundlage der Instanzzustände arbeitet, anstatt implizit in der Vererbungshierarchie eingebunden zu sein.
 
 ## 3.3 Falsche Verantwortungszuordnung durch Vererbung und Komposition
 Im Beispielprogramm wird DamageModel als eigene Klasse definiert, was sich im Gegesnatz zur Cannonproblematik insofern rechtfertigen lässt, als dass es eine Spielmechanik mit eigener Zuständigkeit kapselt. Die Integration in die Klassenhierarchie ist jedoch problematisch. Ship erbt von GameObject und DamageModel, was impliziert, dass Ship ein DamageModel ist. Dies ist nicht korrekt, da Ship lediglich dessen Mechanik nutzt.
@@ -193,15 +191,50 @@ Hierdrch entsteht eine enge Kopplung zwischen globaler Spiellogik und lokalen Ob
 Es zeigt sich, dass weder die Verwendung von Vererbung noch von Komposition per se zu einer geeigneten Modellierung führt. Entscheidend ist die korrekte Zuordnung von Verantwortlichkeiten im Gesamtsystem. Insbesondere Vererbung setzt dabei eine konsistente „ist ein“-Beziehung voraus, die im vorliegenden Modell nicht gegeben ist.
 
 ## 3.4 Mehrfachvererbung als Quelle von Komplexität
-Die MRO bringt nicht unerhebliche implizite Komplexität mit sich. Während die Initialisierung mit der MRO sinnvoll verkettet werden kann, stellt sich das für Methoden der Ablaufsteuerung schwieriger dar.   
+Mehrfachvererbung erzeugt zusätzliche implizite Komplexität. Während sich die `__init__` Methoden der Basisklassen von Ship sinnvoll kooperativ verknüpfen lassen, führt derselbe Ansatz bei Methoden zur Ablaufsteuerung in der update() Methode zu strukturellen Problemen. 
 
+![ship.update Methode](Abbildungen/ship_update.png){ width=70% }
 
+Hier wird die GameObject Implementierung von update() mit super() aufgerufen, während die Implementierung von update() der zweiten Basisklasse DamageModel explizit über die Klasse auf die eigene Instanz aufgerufen wird. 
+Dies ließe sich mit kleineren technischen Anpassungen analog zur `__init__` Methode ebenfalls kooperativ aufrufen, um die Effizienz und das Designprinzip des Interfaces zu nutzen. 
+Allerdings werden hier mehrere Verantwortlichkeiten verarbeitet, die semantsich voneinander abhängen. Ihre Reihenfolge ist daher nicht beliebig. Die GameObject Implementierung von update() setzt die Bewegung der Objekte in der Spielwelt um. Diese muss abgeschlossen sein, bevor eine Kollision geprüft wird. Die Kollisionsprüfung ist wiederum semantische Vorraussetzung für die Aktualisierung des DamageModels als zweite Basisklasse, bevor letzten Endes der Schaden auf die Ship Instanz angewendet wird. 
+Ein kooperativer Aufruf beider update() Methoden würde die semantische Reihenfolge zwingend brechen. Entweder würde das DamageModel vor der Kollisionserkennung, oder die Bewegungslogik nach der Kollisionserkennung aktualisiert werden.
+Es zeigt sich, dass ein gemeinsames Interface nur dann sinnvoll ist, wenn der gemeinsame Aufruf der Methoden auch semantisch sinnvoll gebündelt werden kann. 
+Sind die Verantwortlichkeiten der Basisklassen stark unterschiedlich dürfte dies regelmäßig nicht der Fall sein. 
+Bei komplexen MRO Strukturen wird zusaätzlich die Aufrufreihenfolge innerhalt von super() implizit und ist nicht mehr direkt steuerbar. 
+Daher stellt sich die Frage ob die Abstraktion der Mehrfachvererbung für Aufgaben der Ablaufsteuerung geeignet ist. 
+Der Nutzer muss der MRO und Klassenhirarchie folgen um feststellen zu können, welche Aufrufe erfolgen und welche Nebenwirkungen damit verbunden sind. Die benötigten Informationen sind dabei teilweise implizit und dezentral im Programm verteilt. 
+Ein expliziter prozeduraler Methodenaufruf wirkt an der Aufrufstelle zwar weniger elegant, wäre in diesem Fall aber vermutlich klarer und wartbarer als die bescheriebene Herangehensweise. 
 
+# 4. Herausforderungen bei der Modellierung mit objektorientierter Programmierung
+## 4.1 Einordnung der behandelten Herausforderungen 
+Die im letzten Kapitel dargestellten Schwierigkeiten erscheinen zunächst als Folge objektorientierter Mechaniken. Die Zuordnung von Entitäten zu Klassen ist ausschließlich im Rahmen objektorientierter Programmierung erforderlich. Die Vermischung von Typ und Zustand wirkt problematisch, weil Verhalten im Objekttyp verankert werden kann. Die strukturelle Kopplung durch Vererbung entsteht erst durch die Existenz von Vererbungsmechanismen, und die Komplexität der Mehrfachvererbung ist ein spezifisches Problemfeld objektorientierter Programmierung.
+Bei genauerer Betrachtung zeigt sich jedoch, dass keines dieser Probleme technischer Natur ist. Die dargestellten Implementierungen sind syntaktisch korrekt und lassen sich technisch problemlos ausführen.
+Die eigentliche Herausforderung liegt damit auf der Ebene der Modellierung. Objektorientierte Programmierung stellt Werkzeuge zur Verfügung, mit denen Problemräume strukturiert werden können. Die technisch korrekte Anwendung dieser Werkzeuge führt jedoch nicht zwangsläufig zu einer Modellierung, die den zugrunde liegenden Problemräumen gerecht wird.
+Während die Implementierung von Vererbungshierarchien in einfachen Lehrbuchbeispielen wie Autos oder Tieren unproblematisch erscheint, steigt die Komplexität der Modellierung, sobald Objekte miteinander interagieren und semantisch unterschiedliche Funktionalitäten bereitstellen sollen.
+Das stellt jedoch keine spezifische Herausforderung objektorientierter Programmierung, sondern eine Herausforderung beim Programmieren unabhängig vom zugrundeliegenden Paradigma dar. 
 
+## 4.2 Folgen falscher Abstraktionsebene
+Wie oben dargestellt, ist ein Kerngedanke objektorientierter Techniken die Nutzung von Abstraktionen zur Komplexitätsreduktion. So wie die Anwendung objektorientierter Techniken nicht automatisch zu korrekter Modellierung führt, führt auch die Nutzung von Abstraktion nicht automatisch zum gewünschten Ergebnis der Komplexitätsreduktion.
+Gerade am Beispiel der Mehrfachvererbung, welche verschiedene interne Mechaniken abstrahiert und eine sehr einfache Nutzung an der Aufruferseite ermöglicht, zeigt sich, dass das implizite Ausblenden relevanter Programmteile im Ergebnis zu erhöhter Komplexität führen kann.
+Die Wahl der Abstraktionsebene ist damit entscheidend. An vielen Stellen muss abgewogen werden, wie weit abstrahiert werden kann, ohne dass für den Nutzer notwendige Informationen verloren gehen. Gleichzeitig muss bewertet werden, ob eine Abstraktion tatsächlich zur Reduktion von Komplexität beiträgt oder lediglich bestehende Designprobleme verdeckt.
 
-- [ ] [@haberlein2024] muss aktuell evtl aus Literaturverzeichnis entfernt werden.
-- [x] Spezialisierung als Begriff bei Vererbung noch einbringen
-- [x] Diskusion shoot Methoden
-- [x] Diskusion Rock überschreibt update mit pass hat also weniger Funktionalität (wiederspricht SOLID), was außerdem keinen Sinn macht, weil in GameObjects.update die movable Fähigkeit geprüft wird. Wenn man es allerdings mit super() aufrufen würde, wirkt es als würde rock bei update tatsächlich etwas tun + unnötiger Methodenaufruf, wo ich schon weiß, dass nix bei rum kommt -> Fazit falsche Abstraktionsebene von movable. von da in die Diskussion, dass movable aber Eine Fähigkeit ist, die man verlieren kann also Modellierung tiefer in der Vererbungshirarchie in den Typen auch kritisch ist.
-- [ ] Diskusion DamageModel könnte abstract sein, wovon geerbt wird, sodass dann mit **kwargs auch DamageModel.update mit kooperativer Vererbung in die super() aufrufe integriert werden würde.
-- [ ] Diskussion kooperative update Methode 
+## 4.3 Objektorientierung als verstärkender Faktor von Designfehlern 
+Auch wenn die dargestellten Herausforderungen nicht exklusiv auf objektorientierte Programmierung beschränkt sind, können bestimmte technische Eigenschaften objektorientierter Programmierung diese Probleme verstärken.
+Zum einen werden Designentscheidungen früh im Programm strukturell verankert. Die Entwürfe von Basisklassen bilden die Grundlage für alle weiteren Implementierungen. Ihre Passung zum Problemraum ist damit entscheidend, um darauf aufbauende Klassen konsistent entwickeln zu können. Designfehler zeigen sich dabei nicht immer unmittelbar, sondern teilweise erst bei der Implementierung von Klassen, die tiefer in der Vererbungshierarchie stehen. Zu diesem Zeitpunkt bestehen strukturelle Kopplungen bereits, die sich nur schwer wieder auflösen lassen.
+Es muss daher früh eine vergleichsweise konkrete Vorstellung davon bestehen, welche Anforderungen das Programm erfüllen soll. Auch die zukünftige Erweiterbarkeit hängt stark von der Gestaltung der Klassenbeziehungen ab und muss bereits bei der initialen Modellierung berücksichtigt werden.
+Nachträgliche Veränderungen an Basisklassen gestalten sich insofern schwierig, als dass schon kleine Änderungen, indirekt über die Subklassen, großen und nicht sofort offensichtlichen Einfluss auf das System haben.
+Die Spezialisierung von Methoden führt dazu, dass Logik teilweise dezentralisiert wird. Bei intensiver Nutzung objektorientierter Mechaniken ergibt sich die konkrete Ausführung einer Methode nicht mehr nur aus aus ihrer lokalen Definition, sondern aus einem Zusammenspiel verschiedener Klassen und Methoden entlang der Vererbungshirarchie. Das kann Verständnis erschweren und Fehler verdecken.
+
+# 5. Fazit und Reflexion 
+Das entwickelte Beispielprogramm wurde nicht mit der Intention erstellt, eine praktisch geeignete Implementierung für ein Computerspiel zu liefern. Ziel war es, zentrale Techniken objektorientierter Programmierung anhand eines konkreten Systems darzustellen und kritisch zu diskutieren. Deshalb wurden einzelne Entwurfsentscheidungen bewusst nicht korrigiert, um Herausforderungen und Problemfelder sichtbar machen zu können. Im Verlauf der Arbeit zeigte sich jedoch, dass die gewählte Modellierung den zugrunde liegenden Problemraum in mehreren Punkten über das geplante Maß hinaus verfehlt.
+Die daraus entstandenen und analysierten Probleme sind nicht als grundsätzliche Kritik an dem Paradigma der objektorientierten Programmierung zu verstehen. Vielmehr verdeutlichen sie, dass die zentrale Herausforderung nicht in der technischen Umsetzung objektorientierter Mechaniken liegt, sondern in der Wahl geeigneter Abstraktionsebenen und der korrekten Zuordnung von Verantwortlichkeiten innerhalb eines Systems.
+Die analysierten Herausforderungen wurden dabei nicht theoretisch hergeleitet, sondern sind im eigenen Arbeitsprozess aufgekommen und praktisch erfahren worden. 
+Insbesondere im Umgang mit Vererbung und Mehrfachvererbung zeigte sich, dass frühe strukturelle Festlegungen weitreichende Konsequenzen haben und nur schwer revidiert werden können.
+Allerdings lässt sich aus den analysierten Schwächen auch ableiten, welches Potenzial objektorientierte Programmierung bei geeigneter Anwendung bietet. 
+Sauber gewählte Abstraktionen und klar abgegrenzte Verantwortlichkeiten ermöglichen Wiederverwendbarkeit in verschiedenen Kontexten und lassen Systeme bei Bedarf schnell und zuverlässig hochskalieren. 
+Auch klar definierte Schnittstellen können für Nutzer umfangreiche Funktionalität schnell und einfach nutzbar machen.
+So wäre es mit einem überarbeiteten Beispielprogramm, welches die größten Modellierungsfehler beseitigt möglich, große Mengen an Spielobjekten einfach zu verwalten, da effizient über diese iteriert werden kann. Aktionen wie Updates oder Initialisierungen können auf eine nach Eigenschaften filterbare Menge von Objekten einheitlich angewendet werden.
+Auch könnten etablierte Implementierungen von Spielmechaniken, wie einer Kollisionserkennung, von anderen Entwicklern genutzt und nur mittels derer Schnittstelle an das eigene Programm angebunden werden. 
+Zusammenfassend zeigt die Arbeit, dass objektorientierte Programmierung die Umsetzung eines Modells unterstützen kann, die grundlegende Herausforderung der Problemstrukturierung jedoch nicht ersetzt. Ein passendes Modell stellt unabhängig vom gewählten Paradigma die entscheidende Voraussetzung für gut funktionierende Software dar. 
+

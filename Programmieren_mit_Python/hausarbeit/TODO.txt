@@ -9,3 +9,5 @@ auf mro bei klassen eingehen, die von mehreren erben
 
 Ausrichtungsproblematik der Schiffe o
 
+´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´---´´
+In der Einleitung wird gesagt, es soll der Nutzen von Vererbung und Methodenüberschreibung  zur Spezialisierung von Klassen aufgezeigt werden. Das müsste noch passieren.
