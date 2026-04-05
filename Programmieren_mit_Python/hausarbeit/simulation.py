@@ -1,13 +1,16 @@
-from __future__ import annotations
-from basisklassen import GameObject
-from spielobjekte import Fortress, Rock, SandBank, Ship
-from systemkomponenten import CollisionModel
-
+from Programmieren_mit_Python.hausarbeit.placeholders import get_user_input
+from collision_model import CollisionModel
+from fortress import Fortress
+from game_object import GameObject
+from rock import Rock
+from sandbank import SandBank
+from ship import Ship
 
 def create_world() -> list[GameObject]:
     game_objects: list[GameObject] = []
     collision_model = CollisionModel(game_objects)
 
+    # Initialisierung der Spielobjekte
     ship_1234 = Ship(
         ID=1234,
         x=100,
@@ -67,6 +70,7 @@ def create_world() -> list[GameObject]:
             fortress_9867,
         ]
     )
+
     return game_objects
 
 
@@ -86,13 +90,15 @@ def run_game_loop(game_objects: list[GameObject]) -> None:
             else:
                 objects_to_remove.append(obj)
 
-
+#=========================================================
+#MAIN
+#=========================================================
 if __name__ == "__main__":
     game_objects = create_world()
     run_game_loop(game_objects)
-
-#==================================================================
-#PLATZHALTER
-#==================================================================
+	  
+#=========================================================
+#Platzhalter
+#=========================================================
 def get_user_input():
     pass
