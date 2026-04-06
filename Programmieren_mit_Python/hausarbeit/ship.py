@@ -17,11 +17,11 @@ class Ship(GameObject, DamageModel):
         width: int,
         height: int,
         max_health: int,
+        masts: int,
         cannon_capacity: int,
         collision_model: CollisionModel,
         game_objects: list[GameObject],
     ) -> None:
-        # Ships sind grundsätzlich beweglich.
         super().__init__(
             ID=ID,
             x=x,
@@ -32,8 +32,13 @@ class Ship(GameObject, DamageModel):
             max_health=max_health,
         )
 
+        # Geschwindigkeit ist hier im hypothetischen Spiel eine nicht 
+        # durch den Spieler manipulierbare Eigenschaft, sondern eine 
+        # Eigenschaft der Klasse, da alle Schiffe gleich schnell sein sollen. 
         self._speed = 5
-
+        
+        self.masts = masts
+        
         self._collision_model = collision_model
 
         self._cannon = Cannon(
