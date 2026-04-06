@@ -1,13 +1,17 @@
-import classes as c
-import placeholders as p
+from Programmieren_mit_Python.hausarbeit.placeholders import get_user_input
+from collision_model import CollisionModel
+from fortress import Fortress
+from game_object import GameObject
+from rock import Rock
+from sandbank import SandBank
+from ship import Ship
 
-
-def create_world() -> list[c.GameObject]:
-    game_objects: list[c.GameObject] = []
-    collision_model = c.CollisionModel(game_objects)
+def create_world() -> list[GameObject]:
+    game_objects: list[GameObject] = []
+    collision_model = CollisionModel(game_objects)
 
     # Initialisierung der Spielobjekte
-    ship_1234 = c.Ship(
+    ship_1234 = Ship(
         ID=1234,
         x=100,
         y=15,
@@ -18,7 +22,7 @@ def create_world() -> list[c.GameObject]:
         collision_model=collision_model,
         game_objects=game_objects,
     )
-    ship_4312 = c.Ship(
+    ship_4312 = Ship(
         ID=4312,
         x=10,
         y=40,
@@ -30,11 +34,11 @@ def create_world() -> list[c.GameObject]:
         game_objects=game_objects,
     )
 
-    rock_6543 = c.Rock(6543, 60, 90, 5, 5)
-    rock_8756 = c.Rock(8756, 45, 89, 7, 7)
-    sandbank_5436 = c.SandBank(5436, 70, 140, 30, 10)
+    rock_6543 = Rock(6543, 60, 90, 5, 5)
+    rock_8756 = Rock(8756, 45, 89, 7, 7)
+    sandbank_5436 = SandBank(5436, 70, 140, 30, 10)
 
-    fortress_4567 = c.Fortress(
+    fortress_4567 = Fortress(
         ID=4567,
         x=200,
         y=200,
@@ -44,7 +48,7 @@ def create_world() -> list[c.GameObject]:
         collision_model=collision_model,
         game_objects=game_objects,
     )
-    fortress_9867 = c.Fortress(
+    fortress_9867 = Fortress(
         ID=9867,
         x=0,
         y=0,
@@ -70,11 +74,11 @@ def create_world() -> list[c.GameObject]:
     return game_objects
 
 
-def run_game_loop(game_objects: list[c.GameObject]) -> None:
-    objects_to_remove: list[c.GameObject] = []
+def run_game_loop(game_objects: list[GameObject]) -> None:
+    objects_to_remove: list[GameObject] = []
 
     while True:
-        p.get_user_input()
+        get_user_input()
 
         for obj in objects_to_remove:
             game_objects.remove(obj)
@@ -86,9 +90,15 @@ def run_game_loop(game_objects: list[c.GameObject]) -> None:
             else:
                 objects_to_remove.append(obj)
 
-        # Nur für Debug-Zwecke: beendet die Schleife nach einem Durchlauf.
-        break
-
-
-game_objects = create_world()
-run_game_loop(game_objects)
+#=========================================================
+#MAIN
+#=========================================================
+if __name__ == "__main__":
+    game_objects = create_world()
+    run_game_loop(game_objects)
+	  
+#=========================================================
+#Platzhalter
+#=========================================================
+def get_user_input():
+    pass

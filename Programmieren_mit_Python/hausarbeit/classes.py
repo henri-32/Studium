@@ -124,8 +124,6 @@ class DamageModel(ABC):
     def damage(self, damage: int) -> None:
         self._health = max(0, self._health - damage)
 
-    # TODO DamageState Unmaneuverable semantisch bedenklich, wenn DamageModel
-	# Auch für nicht movable Klassen integriert wird.
     def update(self) -> None:
         relative_damage = (self._health / self._max_health) * 100
 
@@ -174,12 +172,6 @@ class CollisionModel:
             for i in obj.occupied_space:
                 if i in position_check_list:
                     return obj
-
-#TODO War hier als Beispiel für Komposition, könnte aber eher auch als 
-# Fähigkeit modelliert werden, welche direkt eine API zur verfügung stellt, da 
-# gerade jede Cannon integrierende Klasse selber shoot definieren muss, was
-# wiederum self.cannon.shoot aufruft. Da wäre abstrakte Klasse mit interface
-# vielleicht Sinniger
 
 class Cannon:
     def __init__(
@@ -324,6 +316,7 @@ class Ship(GameObject, DamageModel):
     def update(self) -> None:
         super().update()
         self.check_for_collision()
+        DamageModel.update(self)
         self.apply_damage_to_abilities()
 
 
@@ -376,3 +369,4 @@ class Fortress(GameObject, DamageModel):
         self._cannon.shoot(self.x, self.y, 90)
         self._cannon.shoot(self.x, self.y, 180)
         self._cannon.shoot(self.x, self.y, 270)
+
