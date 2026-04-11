@@ -93,7 +93,7 @@ Hier wird bösartiger Code in eine Website oder Anwendung eingeschleust. Es gibt
    Bösartiger Code wird auf dem Webserver gespeichert. Wenn man zum Beispiel eine Kommentarfunktion auf der Website hat, kann dort durch Angreifer ein kommentar eingebunden werden, der   Code enthält. Wenn Nutzer den Kommentar aufrufen, wird z.Bsp. versucht ein Bild mit ungültigen Quellcode zu laden, wo ihm Fehlerfall dann das Skript ausgeführt wird.
 
 3. DOM-basiertes XSS
-   Angreifer ändern Struktur oder Inhalt des DOM mit Code, er im Browser von Benutzern ausgeführt wird. Wenn zum beispiel eine Website einen Inhalt der Seite auf Grundlage eines URL Parameters anzeigt, kann die URL durch Angreifer erstellt werden, wo sich das skript in der URL befindet, da dieses durch die Webseite aufgerufen wird, für den Inhalt. 
+   Angreifer ändern Struktur oder Inhalt des DOM mit Code, er im Browser von Benutzern ausgeführt wird. Wenn zum Beispiel eine Website einen Inhalt der Seite auf Grundlage eines URL Parameters anzeigt, kann die URL durch Angreifer erstellt werden, wo sich das skript in der URL befindet, da dieses durch die Webseite aufgerufen wird, für den Inhalt. 
 
 ### Server-Side Request Forgery (SSRF) 
 Hier wird die Serverseitige Anwendung durch Angreifer dazu gebracht, Anforderungen an eine dritte Stelle zu stellen. Das wird gemacht um Rechte des angegriffenen Servers für Zugriffe zu nutzen, die ohne die Rechte nicht möglich wären. 
@@ -181,9 +181,159 @@ Weiterhin gibt es spezialisierte Schlüsselaustauschprotokolle, die das Problem 
 **Hashing** kann für zusätzliche Sicherheit genutzt werden. 
 Eine Hashfunktion kann eine Eingabe unterschiedlicher Länge verarbeiten und eine kurze Ausgabe mit fester Länge berechnen. Das ist der Hash-Wert. Wenn zwei Eingaben denselben Wert ergeben ist das eine Kollision. Das ist zwar immer möglich, bei kryptografischen Hash-Funktionen jedoch nicht effizient zu berechnen. 
 
+### Homophorbe Verschlüsselung
+Bei Homophorber Verschlüsselung können Operationen auf verschlüsselten Daten durchgeführt werden, ohne die Daten zu kennen. 
+Es wird unterschieden zwischen 
+1. Partiell homophorber Verschlüsselung
+   Dieser Typ unterstützt nur wenige Operationen, wie zum Beispiel Addition von zwei Verschlüsselten Zahlen.
+
+2. Voll-homophorbe Verschlüsselung
+    Alle Arten von Operationen auf verschlüsselten Daten ist möglich. 
+    Theoretisch sind mehrere Verfahren bekannt, allerdings ist die praktische effiziente Umsetzung noch nicht gelungen.
+
+
+## 2.2 Differentielle Privatheit 
+Beim Konzept der Diffential Privacy werden zwar Daten von vielen Benutzern gesammelt, allerdings wird ausgeschlossen, dass Rückschlüsse auf Einzelpersonen gezogen werden können. 
+So werden kleine Änderungen an privaten Daten vorgenommen, die Rückschlüsse unmöglich machen, ohne die Statistik zu stark zu verfälschen. 
+
+Lokale differentielle Privatheit fügt statistisches Rauschen direkt bei den Endgeräten der Nutzer hinzu. 
+
+Globale differentielle Privatheit sammelt zunächst Daten und ergänzt das Rauschen vor Herausgabe. 
+
+Die **Laplace** Verteilung ist eine Mechnanik die Rauschen hinzufügt. Epsilon bestimmt dabei den rahmen. Bei geringerem Wert wird der Datenschutz priorisiert, bei höherem die statistische Auswertbarkeit. 
+
+Privacy-Enhancing Cryptography (PEC)
+ist ein Oberbegriff für Verschlüsselungstechniken zum Datenschutz. Zusammen mit differentieller Privatheit lässt sich Datenschutz von Ein- und Ausgaben erreichen. 
+Insgesamt lassen sich so Datennutzen bei Datenschutz erreichen. 
+
+## 2.3 Zero-Knowledge-Beweise und Protokolle 
+ZKPs beweisen, dass sie ein Geheimnis kennen, ohne das Geheimnis offen zu legen. 
+Sie sind eine wahrscheinlichkeitstheoretische Funktion, sodass die bewiesene Tatsache nicht so sicher ist, wie eindeutige Daten. 
+ZKPs sind interaktive Kryptografieprotokolle. 
+Der verifizierende Partner sendet eine Aufgabe, die beweisende Partei überzeugt die verifizierende Partei davon, dass sie die Lösung hat, ohne diese offen zu legen. 
+
+Diese Protokolle weisen drei Aspekte auf: 
+- Vollständigkeit
+  Wenn die Aussage wahr ist, wird die beweisende Partei mit vorgegebener Genauigkeit überzeugen können
+- Korrektheit
+  Bei falscher Aussage kann keine beweisende Partei überzeugen (bzw. nur mit vernachlässigbarer Wahrscheinlichkeit)
+- Nichtoffenlegung
+  Bei wahrer Aussage erfährt die verifizierende Partei nichts, außer der Tatsache, dass die Aussage wahr ist.
 
 
   
 
+# Tests und Audits 
+Beim Testen wird Verhalten und Leistung der Software anhand festgelegter Anforderungen überprüft. 
+Bei einem Audit wird der Entwicklungsprozess und die Praktiken überprüft. 
 
-  
+Tests werden auf 3 Ebenen durchgeführt. Unit Tests Integartionstests und End to End Tests. 
+
+## 3.1 Unit Tests
+Sie sind kleine isolierte und schnelle Tests, die Funktionalität von einzelnen Komponenten überprüfen. 
+Sie sollten idealerweise bei jeder Codeänderung überprüft werden. 
+
+Integrationstests befinden sich auf der mittleren Ebene. Sie sind größer komplexer und langsamer und testen verschiedene Komponenten der Software im Zusammenspiel. 
+Sie testen kritische Interaktionen und sollten zum Beispiel beim Build erfolgen.
+
+Die E2E Tests simulieren das reale Benutzererlebnis. Das ganze System oder Produkt wird in allen denkbaren Szenarien getestet. 
+
+Andere Tests außerhalb der Pyramide sind UI oder explorative Tests. Explorative tests betonen Kreativität und Spontaneität. Anstatt definierten Testfällen zu folgen erkunden Tester dynamisch die Funktionalität der Software. 
+UI Tests konzentrieren sich auf die Benutzeroberfläche. 
+
+Die häufigsten Fehler beim Schreiben von Unit Tests sind: 
+- Testen von fremdem Code
+  Es werden Funktionalitäten von Libs oder andere Codestellen getestet.
+- Testen der Datenbankverbindung
+  Statt Logik zu testen, werden Dinge für Einfügen, Aktualisieren etc. getestet. Das kann zu langsamen und teuren Tests führen.
+- Tests im Nachhinein schreiben
+  Das kann dazu führen dass der Code minderwertig ist und die Tests drumherum geschrieben werden.
+- Tests nach Refactor nicht aktualisieren
+  Wenn sich der Produktionscode strukturell ändert müssen auch Tests angepasst werden.
+- Tests die weder Unit, noch Akzeptanztests sind
+  Tests, die mehr als einzelne Module, aber keine großen Mechaniken testen sind frustrierend und haben wenig Mehrwert.
+
+
+**Integrationstests** 
+Sie sind dafür gedacht Logische Fehler zwischen Schnittstellen zu erkennen. 
+Sie können gerade bei der Fehlerisolierung helfen. 
+Damit damit sie effektiv und wartbar sind müssen verschiedene Richtlinien verfolgt werden: 
+
+*Definition des Umfangs* 
+Beim Big-Bang Test werden alle Komponenten und Dienste zusammengeführt und auf einmal getestet. 
+Beim inkrementellen Integrationstests werden die Komponenten nach und nach integriert. 
+Das kann top-down und bottom up erfolgen. 
+Sandwich integrationstests beginnen aus zwei seiten von oben und unten. 
+Beim Testumfang ist insbesondere Kosten-Nutzen Rechnung zu berücksichtigen. 
+
+*Es sollten geeignete Instrumente und Rahmenwerke gewählt werden* 
+
+*Schreiben von sauberem und wartbarem Testcode* 
+Tests sollten vor oder neben dem Produktivcode geschrieben werden. 
+
+*Mock-Objekte verwenden, um Nebeneffekte zu simulieren* 
+Damit sollten externe Faktoren aus den Tests isoliert werden. 
+
+*Gleichgewicht bei der Häufigkeit von Testausführungen* 
+Die Integrationstests sollten auch in einer semantisch sinnvollen Reihenfolge ausgeführt werden, die Abhängigkeiten berücksichtigt. 
+
+*Effektive Verwaltung der Testumgebung*
+Die Testumgebung muss realistisch und stabil sein. 
+
+
+End to End Tests werden nach Unit und Integrationstests durchgeführt und sollen sicherstellen, dass die Software für den angestrebten Anwendungsfall geeignet ist. 
+
+Beim Systemtests werden zusätzlich Kundenerwartungen neben den technischen Aspekten getestet. 
+
+**Funktionstests** 
+Hiermit werden die funktionalen Anforderungen überprüft 
+
+**Leistungstests**
+Sie testen das System unter verschiedenen Belastungen um sicherzustellen, dass der Datenverkehr bewältigt werden kann. 
+
+**Sicherheitstests** 
+Hier werden Angriffe getestet 
+
+**Zerstörungsfreie Tests** 
+
+**Zerstörende Tests**
+Bis zum Belastungsbruch getestet 
+
+**Statische Tests**
+Analysen von Code und Doku, ohne dass der Code ausgeführt wird. 
+
+## 3.2 Sicherheitstests
+Gänge von Arten sind: 
+- Scannen auf Sicherheitslücken
+  Automatisierte Tools überprüfen das System systematisch auf bekannte Schwachstellen wie veraltete Softwäre, falsch konfigurierte Eisntellungen oder schwache Passwörter.
+
+- Penetrationstests
+  Hier werden reale Angriffe auf das System simuliert. Danach lässt sich die Widerstandsfähigkeit des Systems bewerten und unbekannte oder versteckte Sicherheitslücken aufdecken.
+
+- Statische Anwendungssicherheitstests (SAST)
+  Der Quell- oder Binärcode des Systems wird analysiert um Sicherheitslücken wie Buffer Overflows, SQL Injections oder XSS zu finden.
+
+- Dynamische Anwendungssicherheitstests (DAST)
+  Es werden verschiedene Eingaben und Anfragen an das System gesendet (HTTP, API Aufrufe oder Benutzeraktionen). So kann die Funktionalität und Leistung unter verschiedenen Bedingungen getestet werden .
+
+- Interaktive Anwendungssicherheitstests (IAST)
+  Statisch und Dymisch wird kombiniert.
+
+- Sicherheitsaudits
+  Richtlinien, Verfahren und Dokumentation wird überprüft um Einhaltung der Sicherheitsstandards zu gewährleisten.
+
+Um Webapplikationen auf Sicherheitsprobleme zu suchen stehen verschiedene Tools zur Verfügung 
+(OWASP, ZAP, Nmap, Burp Suite Acunetix)
+
+- Netzwerkscanner
+  Diese scannen Netzwerkgeräte und Diensta auf Sicherheitsprobleme.
+
+- Codeanalysetools
+
+- Fuzzing-Tools
+  Sie testen die Robustheit indem sie zufällige oder missgebildete Eingaben senden, um unerwartetes Verhalten oder Fehler auszulösen.
+
+- Proxy-Tools
+  Sie fangen Datenverkehr zwischen Client und Server ab und verändern ihn, um Anfragen oder Antworten zu manipulieren.
+
+Es gibt **white Box**, **black box** und **grey Box** Sicherheitstests. Das drückt aus, ob dem Tester der Produktivcode offen steht. 
