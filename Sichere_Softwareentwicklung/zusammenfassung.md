@@ -336,4 +336,100 @@ Um Webapplikationen auf Sicherheitsprobleme zu suchen stehen verschiedene Tools 
 - Proxy-Tools
   Sie fangen Datenverkehr zwischen Client und Server ab und verändern ihn, um Anfragen oder Antworten zu manipulieren.
 
-Es gibt **white Box**, **black box** und **grey Box** Sicherheitstests. Das drückt aus, ob dem Tester der Produktivcode offen steht. 
+Es gibt **white Box**, **black box** und **grey Box** Sicherheitstests. Das drückt aus, ob dem Tester der Produktivcode offen steht.
+
+## 3.3 Sicherheitsauditierung von Quelltext 
+Dabei wird Quellcode zur Laufzeit untersucht um Sicherheitslücken und andere Probleme zu finden. Im Rahmen der Auditierung werden u.a. folgende Punkte überprüft: 
+
+- Eingabevalidierung / SQL Injection
+  Mit einer SQL-Abfrage wird versucht auf Daten in einer Datenbank zuzugreifen, bzw. diese zu manipulieren.
+  Dann wird durch Auditoren geprüft, ob die Benutzereingaben ordnungsgemäß validiert werden.
+
+- Bibliotheken von Drittanbietern
+  Sicherheitsauditoren überprüfen Aktualität, Kompatibilität und Bösartigkeit, sowie ob den Lizenzanforderungen entsprochen wird.
+
+- Verschlüsselung
+
+
+Techniken für die Auditierung von Sicherheitscode sind zum Beispiel: 
+
+- Statische Anwendungssicherheitstests(SAST)
+  Analyse des Quellcodes
+- Dynamische Anwendungssicherheit
+  Während der Ausführung der Programmlaufzeit mit Pentests, Fuzzing oder Scanning bewertet.
+- Softwarekompositionsanalyse (SCA)
+  Es wird nach Sicerheitslücken in direkten und indirekten Open-Source Abhängigkeiten gesucht.
+
+SAST ist eher whitebox Test weil der Anwendungscode getestet wird, während DAST blackbox Testing ist, da die ganze Applikation von außen getestet wird. 
+SAST ist effektiver beim Auffinden von Sicherheitslücken zu Beginn des SDLC, während DAST effektiver gegen Ende des SDLC ist. 
+
+Sie unterscheiden sich auch in: 
+- Abdeckung
+  SAST kann die ganze Codebasis abdecken und Probleme, wie toten Code, nicht verwendete Variablen etc. entdecken. DAST kann die gesamte Anwendungsfunktionalität abdecken und dabei Konfigurations, Netzwerk oder Laufzeitfehler aufdecken.
+
+- Genauigkeit
+  SAST tendiert zu falsch positiv, also Probleme, die praktisch nicht ausnutzbar oder relevant sind. DAST ist eher falsch-negativ also möglicherweise kritische Probleme übersehen.
+
+- Geschwindigkeit
+  SAST kann schneller sein, da die Anwendung nicht komplett bereitgestellt und ausgeführt werden muss.
+
+- Kosten
+  SAST kann teurer sein, als DAST, da es Zugriff auf Quellcode und spezielle Tools erfordert. DAST nutzt erher generische Tools.
+
+
+# 4. Sicherheit in der Softwar
+elieferkette 
+Pakete sind Einheiten, die Code und seine Abhängigkeiten enthalten. 
+Container sind Softwareeinheiten, die Code und Abhängigkeiten umfassen, um die Ausführung in verschiedenen Umgebungen zu erleichtern. Container basieren auf gemeinsamen Standards, um plattformübergreifende Kompatibilität zu gewährleisten. 
+Bei der Paket- und Containersicherheit kommen Sicherheitstools zum Einsatz, die diese in jeder Phase schützen sollen. 
+
+## 4.1 Paketsicherheit 
+Die Wiederverwendung von Code und Cloud Technologien haben dies anfälliger für Angriffe gemacht.
+Ein Angriff auf die Lieferkette ist eine Art von Cyberangriff, die den gesamten Prozess der Softwareentwicklung bedroht, da er an alle Kunden ausgeliefert wird. 
+
+1. Paketsicherheit beinhaltet die Integrität von Softwarepaketen. Dazu gehören die Updates, sicheren Versionen und die Verwaltung von Paketabhängigkeiten
+2. Containersicherheit konzentreirt sich auf die Sicherheit der Anwendungsumgebung. Das umfasst das Scannen der Container auf Sicherheitslücken, die Konfifuration zur Minimierung von Angriffsflächen und die Überwachung auf verdächtige Aktivitäten.
+3. CI/CD verifiziert und testet Code sehr häufig, was dazu beiträgt Probleme frühzeitig zu erkennen.
+
+Bei der Paketsicherheit geht es vor allem darum, dass Abhängigkeiten frei von bekannten Sicherheitslücken sind und über eine angemessene Authentifizierung verfügen. 
+Auch die Prüfung der Identität von Paketen gehört dazu. 
+Probleme in Paketen betreffen dabei aufgrund von Abhängigkeiten häufig viele Projekte. 
+Tools für Sicherheitsaudits von Paketabhängigkeiten sind zum Beispiel: 
+- Npm audit: scannt Abhängigkeiten von npm-Pakten auf Sicherheitsprobleme und gibt Empfehlungen, wie die behoben werden können.
+- Dotnet list package vulnerable listet bekannte Sicherheitslücken in NuGet-Paketen
+- Snyk überwacht Paketabhängigkeiten und Sicherheitsprobleme
+
+Auch Pakete können authentifiziert und verschlüsselt werden, um ihre Integrität und Herkunft zu garantieren. 
+
+NuGet.config-Datein und V2-Plugin-Anmeldedatenprovider 
+Hier werden Anmeldedaten für den Konsum von von Paketen gepseichert und bereitsgestellt. So kann der unberechtigte Zugriff auf Paket Feeds verringert werden. Sie stellen authentifizierte Feeds bereits, was in der Abhängigkeitskette für Zuverlässigkeit sorgt. 
+
+**Virtru** ist eine Datenschutzplattform, die es ermöglicht E-Mails oder Dateien asymmetrisch zu verschlüsseln und Außerdem auch Tools zum Schlüsselaustausch bereitstellt, während es nicht auf die zu verschlüsselnden Daten zugreifen kann. 
+
+**Advanced-Encryption-Standard (AES) Verschlüsselung und Apache-Commins-Crypto Lib** 
+AES ist ein verbreiteter symmetrischer Algorithmus. 
+Sie unterstützen die Verschlüsselung von Remote-Procedure-Call Verbindungen zwischen Paketen und Spark Clustern.
+Die Apache-Commons-Crypto Bibliothek bietet APIs für kryptografische Verschlüsselung. So können mit wenig Programmieraufwand leistungsstarke AES Verschlüsselungen. 
+
+
+**Zugriffskontrolle und Autorisierung**
+Auch die Zugriffskontrolle auf Paketen stellt einen wichtigen Sicherheitsaspekt dar. 
+- Die MAC (Mandatory Access Control) erlaubt nur dem Eigentümer die Zugriffskontrollen zu verwalten.
+- Spring Security bietet ein Framework für Authentifizierung und Autorisierung von Jave Anwendungen
+- Die OWASP Access Control Cheatsheet bietet einen umfassenden Leitfaden für effektive Zugriffskontrollen von Webanwendungen
+
+**GitHub Actions**
+Ermöglicht Automatisierung und Überwachung in Git Repositories. 
+Es bietet mehrere Sicherheitsfunktionen für Compliance und Sicherheitsüberwachung. 
+- Dependabot-Alerts benachrichtigen über Sicherheitslücken in Open Source Abhängigkeiten und öffnen automatisch Pull-Requests
+- Der Abhängigkeitsgraph enthält Lizenzinformationen von Open Source Paketen.
+- GitHub Code Scanning warnt vor unsicherem Code.
+- Secrets sind sensible Werte (strukturierte Daten sollten keine Secrets sein)
+
+**Bright Security** 
+Eine Plattform für DAST Tests ins Cloud Umgebungen. Es ermöglicht den Beginn des Scannens bereits während er Unit Test Phase. Bei gefundenen Sicherheitslücken werden Empfehlungen und Ressourcen zur Behebung bereitgestellt. 
+Es kann außerdem in eine CI/CD Pipeline integriert werden. 
+
+**UpGuard** 
+Ein Framework für Sicherheitsmetriken und Compliance-Management.
+Es wird vor allem auch das, was außerhalb der eigenen Infrastruktur passiert ausgewertet und aufs eigene Projekt gemapped.
