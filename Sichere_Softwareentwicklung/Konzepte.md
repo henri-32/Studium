@@ -1,4 +1,5 @@
 # 6. Projektmanagement
+## 6.1 Der SDLC
 **Lebenszyklus des Projektmanagementes (PMLC)** 
 Am häufigsten verwendete Version entwickelt vom PMI (Project Management Institue) folgt einer linearen Struktur und basiert auf dem Wasserfallmodell. 
 
@@ -61,4 +62,94 @@ SOLID Principles:
  Soll innovative oder ergebnisoffene Software entwickelt werden, kommen agile Methoden zum Einsatz. Sie gewährleisten Prozessflexibilität und bessere iterative Kontrolle. 
 
  Der Grundgedanke ist, dass zunächst mit dem Standardprodukt begonnen wird und dieses dann iterativ zusamen mit dem Kunden an die Kundenbedürfnisse angepasst wird. 
- Es werden zeitlich begrenzte Phasen "Sprints/Timeboxes" definiert. Zu Beginn dieser Phasen werden Aufgaben festgelegt, die zusammen mit dem Kunden priorisiert werden. Am Ende des Sprints bewerten Kunden und Anbieter zusammen die Arbeit. Das erleichtert Kostenzufriedenheit und bindet die Kunden eng in den Entwicklungsprozess ein, was zu erhöhter Kundenzufriedenheit führen kann. 
+ Es werden zeitlich begrenzte Phasen "Sprints/Timeboxes" definiert. Zu Beginn dieser Phasen werden Aufgaben festgelegt, die zusammen mit dem Kunden priorisiert werden. Am Ende des Sprints bewerten Kunden und Anbieter zusammen die Arbeit. Das erleichtert Kostenzufriedenheit und bindet die Kunden eng in den Entwicklungsprozess ein, was zu erhöhter Kundenzufriedenheit führen kann.
+
+ **Scrum**
+ ist ein Framework, was für Projekte konzipiert ist, die schnelle Ergebnisse fordern und tolerant gegenüber Änderungen sind. Das Projekt wird in "Product Items" zerlegt, die im "Product Backlog" gesammelt werden. Scrum verlangt, dass die Teams klein und funktionsübergreifend sind. 
+ 
+ Die Grundstruktur von Scrum-Prozessen umfasst etwa fünf Hauptmeetings: 
+ 1. Backlog-Refinement-Meeting
+ 2. Sprint Planung
+ 3. tägliche Meetings
+ 4. Sprint Nachbesprechung
+ 5. Sprint Retrospetkive
+
+**Lean**
+fügt agilen Prozessen ein Workflow-Schema hinzu, damit die Iterationen die gleiche Qualität haben. Mit diesem Workflow-Schema werden alle Aufgaben bearbeitet. Das hat Vorteile für die Struktur, ist aber für große und heterogene Aufgaben ungeeignet. 
+Lean unterscheidet strikt zwischen 
+A) Was ist der Kunde bereit zu zahlen (Value)
+B) alles andere (Waste)
+
+**Kanban** 
+Bei Kanban kann bei sich ändernder Priorität von Aufgaben eine gerade bearbeitete Aufgabe verlassen werden. Es gibt im Konzept weniger strenge Struktur, als bei Scrum. 
+So können Teammitglieder auch mehrere Aufgaben gleichzeitig erledigen. 
+Kanban besteht aus vier Säulen 
+1. Für jede Aufgabe wird eine individuelle Karte erstellt, die alle notwendigen Informationen über die Aufgabe enthält. 
+2. Die Anzahl der Aufgaben pro Stufe ist begrenzt
+3. kontinuierlicher Fluss bedeutet, dass Aufgaben aus einem Rückstand in der Reihenfolge ihrer Dringlichkeit in den Fluss integriert werden.
+4. Es gibt eine kontinuierliche Verbesserung des Prozesses
+
+Es geht hierbei um einen kontinuierlichen Arbeitsfluss der optimiert werden soll. Dieser wird weniger im Voraus geplant. Es gibt außerdem ein hartes Limit, dass nur eine maximale Anzahl von Prozessen gleichzeitig bearbeitet werden darf.
+
+## 6.2 Schwachstellen-Management 
+Sicherheitslücken haben häufig einen hohen oder kritischen Schweregrad, der zu Remote-Angriffen und vollständigem Verlust der Verfügbarkeit führen können. 
+
+**CVE (Common Vulnerabilitys and Exposures)**
+Datenbank für reale Sicherheitslücken z.Bsp. konkrete Lücke in OpenSSL Version X 
+
+**CWE (Common Weakness Enumeration)**
+Katalog von Fehlerarten z.Bsp. BufferOverflow
+
+**CVSS (Common Vulnerability Scoring System)**
+Misst und kategorisiert den Schweregrad von Sicherheitslücken 
+
+**OWASP** für Websicherheit
+
+Das Managment von Sicherheitslücken besteht aus vier Hauptphasen: 
+1. Scannen
+   Durch invasive Tests(Simulation echter Angriffe) oder nicht-invasive Tests (Strukturanalyse) s.a. SAST vs. DAST
+2. Risikobewertung
+   Die beim Scannen entdeckten Sicherheitslücken sollten kategorisiert und priorisiert werden. Siehe CWE.
+   Die Betriebsumgebung der Software sollte anhand der CVSS Skala bewertet werden.
+3. Reporting
+   Die Ergebnisse werden zusammenfassend mit Empfehlungen vorgestellt.
+4. Umsetzung von Änderungen
+
+Die Entdeckung von Sicherheitslücken ist erwartbar. Daher sollten sich Unternehmen darauf vorbereiten, zum beispiel durch klare Meldewege, Rollen und Verantwortlichkeiten. 
+Es sollte auch noch außen verantwortungsvoll kommuniziert werden. 
+
+## 6.3 Patch-Management 
+Es gibt einen mehrstufigen Ansatz Operational Technology (OT) / Industrial Control System (ICS) Patch Management beschrieben wird. 
+Er besteht aus sechs Schritten: 
+1. Erstellung eines Basisinventars
+2. Sammeln von Informationen über Software-Patches und Sicherheitslücken
+3. Identifizierung der Relevanz von Sicherheitslücken
+4. Review, Genehmigen und Abschwächen des Patch-Managements
+   Hier werden die Grundlinien entwickelt, wonach aus den verfügbaren Patches gefiltert wird.
+5. Testen und Bereitstellen
+6. Dokumentation
+
+## 6.4 Management von Pentest- und Bug-Bounty-Programmen 
+Es kann zwischen drei Arten von Pentests unterschieden werden: 
+1. White-Box-Pentest: Testerinnen erhalten Zugriff auf Quellcode. So können sowohl externe, als auch interne Angriffe simuliert werden.
+2. Black-Box-Pentest: Simulierter Hackerangriff
+3. Gray-Box-Pentest: Tester verfügen über Teilinformationen
+
+Ein Pentests besteht aus fünf Phasen: 
+1. Vorbereitung
+2. Ausarbeitung eines Angriffsplans
+3. Spezifizierung des Datentyps
+4. Durchführung der Tests
+5. Interpretation der Ergebnisse
+
+Ein Pentest Bericht sollte Folgendes Enthalten 
+- Fehlerbeschreibung
+- Wie er gefunden wurde
+- Verwendete Tools
+- Bedingungen für das Auftreten des Fehlers
+- Eine Datei, die den Bug reproduzieren lässt
+- Auswirkungen auf die Organisation
+- Vorschläge zur Fehlerbehebung
+
+
+Ein Bug-Bounty-Programm belohnt das auffinden von Sicherheitslücken. Das ist oft Teil der Sicherheitsstrategie von Unternehmen. Pentests sind zeitlich befristete Projekte, während Bounty-Programme unbefristet laufen können. 

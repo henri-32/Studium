@@ -3,13 +3,15 @@
     "arguments": [
       "/usr/bin/g++",
       "-std=c++17",
+      "-O0",
+      "-g",
       "-c",
       "-o",
       "build/mergeStrings.o",
-      "mergeStrings.cpp"
+      "Tasks/mergeStrings.cpp"
     ],
     "directory": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode",
-    "file": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode/mergeStrings.cpp",
+    "file": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode/Tasks/mergeStrings.cpp",
     "output": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode/build/mergeStrings.o"
   }
 ]
