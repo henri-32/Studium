@@ -377,8 +377,7 @@ Sie unterscheiden sich auch in:
   SAST kann teurer sein, als DAST, da es Zugriff auf Quellcode und spezielle Tools erfordert. DAST nutzt erher generische Tools.
 
 
-# 4. Sicherheit in der Softwar
-elieferkette 
+# 4. Sicherheit in der Softwarelieferkette
 Pakete sind Einheiten, die Code und seine Abhängigkeiten enthalten. 
 Container sind Softwareeinheiten, die Code und Abhängigkeiten umfassen, um die Ausführung in verschiedenen Umgebungen zu erleichtern. Container basieren auf gemeinsamen Standards, um plattformübergreifende Kompatibilität zu gewährleisten. 
 Bei der Paket- und Containersicherheit kommen Sicherheitstools zum Einsatz, die diese in jeder Phase schützen sollen. 
