@@ -1,0 +1,15 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-c",
+      "-o",
+      "build/mergeStrings.o",
+      "mergeStrings.cpp"
+    ],
+    "directory": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode",
+    "file": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode/mergeStrings.cpp",
+    "output": "/home/henri-32/Softwareprojekte/Studium_git/LeetCode/build/mergeStrings.o"
+  }
+]
