@@ -1,0 +1,23 @@
+1. Einleitung
+    1.1 Zielsetzung
+    1.2 Grundidee des Beispielprogramms
+    1.3 Verwendete Klassen 
+
+2. Theoretische Grundlagen
+    2.1 Paradigmen des Programmierens
+    2.2 Objektorientierte Programmierung
+    2.2.1 Kapselung  
+    2.2.2 Abstraktion  
+    2.2.3 Vererbung
+    2.2.4 Komposition  
+    2.2.5 Polymorphie
+    2.2.6 Abstrakte Klassen und Methoden
+
+3. Diskussion
+    (3.1 Setzen von Klassengrenzen)
+    (3.2 Schnittstellen der Klassen zum Hauptprogramm)
+    3.3 Alternative Lösungsansätze für Problemstellungen im Beispielcode
+    3.4 Das Spannungsfeld angemessener Komplexität bei der Problemmodellierung am Beispiel von Mehrfachvererbung
+    (3.5 Praktische Herausforderung bei objektorientierter Programmierung)
+ 
+4. Fazit und Reflexion 
