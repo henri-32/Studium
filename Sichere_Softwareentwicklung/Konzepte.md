@@ -1,3 +1,47 @@
+# 5. Gängige Programmierfehler
+## 5.1 Klassen von Bugs 
+Häufige Fehler sind: 
+- Unsachgemäße Verwendung der dynaischen Speicherzuweisung und -freigabe.  
+  Kann zu Speicherlecks, Dangling Pointern und Segmentierungsfehlern führen. 
+  Speicherlecks entstehen, wenn Speicher zugewiesen aber nicht freigegeben wird. 
+  Dangling Pointer sind Pointer, die auf Speicher verweisen, der nicht zugewiesen ist. Das führt zu UB
+  Segmentierungsfehler treten auf, wenn eine Anwendung versucht auf Speicher zuzugreifen, für den sie keine
+  Berechtigung hat. 
+
+- Fehlen von Code Konventionen für die Speicherverwaltung
+  Wenn Pointer Typen (Smart Pointer / Raw Pointer) inkonsistent von verschiedenen Entwicklern verwendet werden. 
+  
+- Ineffiziente und redundante Speichernutzung
+  Unnötiges Kopieren großer Objekte oder nicht freigeben führt zu großem Speicherplatz. Das kann in Extremfällen
+  zu out-of-memory Fehlern führen 
+
+
+  
+**Common Vulnerabilities and Exposures** 
+CVE weist konkreten Instanzen von Sicherheitslücken in Produkten IDs zu, während die Common Weakness Enumerations die zugrunde liegenden 
+Mechaniken, wie BufferOverflow typisieren. 
+
+Das Common Vulnerabilities Scoring System (CVSS) weist jeder Sicherheitslücke auf Grundlage von Angriffsvektoren,
+Komplexität, Berechtigungsanforderung, Umfang, Integrität und Verfügbarkeit eine Punktzahl zu. 
+
+CPE ist die Common Platform Enumeration, womit sich Betriebssysteme und Hardware typisieren lassen, sodass Sicherheitslücken geordnet werden
+können, je nachdem auf welchen Plattformen sie auftreten. 
+
+
+Schlechte Codepraxis ist ein allgemeiner Begriff, der sich auf unerwünschte oder unprofessionelle Praxis bezieht. 
+Ein Anti-Pattern ist eine bereits bekannte und als unwirksam oder schädliche gesehene Implementierungsform ist. 
+Schlechte Praxis ist zum Beispiel: 
+- Hardcoding von Values und Anmeldedaten
+  Es stellt ein Sicherheitsrisiko dar, wenn der Code offengelegt oder gemeinsam genutzt wird, was zu unberechtigtem Zugriff führen kann. 
+
+- Verfrühte Optimierung
+  Kann zu komplexem Code führen, der schwer zu lesen und zu pflegen ist. Es ist besser erst kleinen schlanken code zu schreiben und diesen dann 
+  zu optimieren. 
+
+- Magic Numbers 
+  
+
+
 # 6. Projektmanagement
 ## 6.1 Der SDLC
 **Lebenszyklus des Projektmanagementes (PMLC)** 
@@ -152,4 +196,7 @@ Ein Pentest Bericht sollte Folgendes Enthalten
 - Vorschläge zur Fehlerbehebung
 
 
-Ein Bug-Bounty-Programm belohnt das auffinden von Sicherheitslücken. Das ist oft Teil der Sicherheitsstrategie von Unternehmen. Pentests sind zeitlich befristete Projekte, während Bounty-Programme unbefristet laufen können. 
+Ein Bug-Bounty-Programm belohnt das auffinden von Sicherheitslücken. Das ist oft Teil der Sicherheitsstrategie von Unternehmen. 
+Pentests sind zeitlich befristete Projekte, während Bounty-Programme unbefristet laufen können. 
+
+
