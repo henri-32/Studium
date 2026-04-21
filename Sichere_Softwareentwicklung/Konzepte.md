@@ -1,7 +1,7 @@
 # 5. Gängige Programmierfehler
 ## 5.1 Klassen von Bugs 
 Häufige Fehler sind: 
-- Unsachgemäße Verwendung der dynaischen Speicherzuweisung und -freigabe.  
+- Unsachgemäße Verwendung der dynamischen Speicherzuweisung und -Freigabe.  
   Kann zu Speicherlecks, Dangling Pointern und Segmentierungsfehlern führen. 
   Speicherlecks entstehen, wenn Speicher zugewiesen aber nicht freigegeben wird. 
   Dangling Pointer sind Pointer, die auf Speicher verweisen, der nicht zugewiesen ist. Das führt zu UB
@@ -38,9 +38,128 @@ Schlechte Praxis ist zum Beispiel:
   Kann zu komplexem Code führen, der schwer zu lesen und zu pflegen ist. Es ist besser erst kleinen schlanken code zu schreiben und diesen dann 
   zu optimieren. 
 
-- Magic Numbers 
-  
+- Magic Numbers
+  Numerische Werte mit unklarer Bedeutung / Besser benannte Konstanten
 
+- Gottobjekte
+  Klassen oder Module, die mit Abhängigkeiten und Verantwortlichkeiten überladen sind.
+
+- Kopieren und Einfügen von nicht verstandenem und getestetem Code
+
+- Inkonsistente oder unklare Namensgebung
+  Führt zu schwer lesbarem Code und damit zu Fehlern.
+
+- Schreiben von übermäßig komplexem / verschachteltem Code
+  Ebenfalls schwerer zu Lesen, Verstehen und Warten.
+
+- Ignorieren von Fehlerbehandlung und -protokollierung
+  Erschwert Fehlersuche
+
+- Fehlende Dokumentation oder Kommentierung des Codes
+  Erschwert Verständnis
+
+
+**Klassifizierung von Bugs** 
+Bugs beziehen sich eher auf funktionale Probleme, während Sicherheitslücken sich auf ausnutzbare Sicherheitsprobleme beziehen. 
+Bugs können zu abstürzen oder unerwartetem Verhalten führen, stellen aber nicht zwingend Sicherheitslücken dar. 
+Softwarebugs können wie folgt klassifiziert werden: 
+- Funktionelle Bugs (Ganzer Komponenten)
+- Bugs auf Komponentenebene (innerhalb von Funktionen)
+- Bugs auf Integrationsebene (Treten erst bei Kombination von Komponenten auf )
+- Mängel bei der Benutzerfreundlichkeit (Verhalten der Software führt zu schlechter Nutzerfreundlichkeit, ohne funktionelle Probleme zu machen )
+- Leistungsmängel
+- Sicherheitsmängel
+- Kompatibilitätsmängel
+- Syntaxfehler
+
+Sicherheitslücken können ebenfalls klassifiziert werden: 
+- Nach den OWASP Kriterien
+- Über Bugs Framework (vier Dimensionen: Verhalten, Verwendung, Ziel und Umfang)
+  Verhalten beschreibt, was die Sicherheitslücke bewirkt oder ermöglicht.
+  Verwendung beschreibt, wie sie ausgenutzt werden kann.
+  Ziel beschreibt, warum die Lücke besteht, oder was sie erreichen soll.
+  Umfang beschreibt, wo sie sich auswirkt oder zutrifft.
+
+
+Bugs sind in aller Regel Folgen menschlichen Fehlverhaltens. Ursache dafür kanns sein: 
+- Mangel an Wissen
+
+- Mangelndes Bewusstsein
+
+- Menschliches Versagen
+
+- Menschliche Voreingenommenheit bzw. inkorrekte Annahmen
+
+- Menschliche Emotionen
+
+
+Das kann vermieden werden durch: 
+- Information
+
+- Informationsaustausch im Team
+
+- Sicherheitsrichtlienien befolgen
+
+- Code Audits
+
+- Testen
+
+- Software regelmäßig aktualisieren/patchen
+
+
+Umgebungsfaktoren können sich auch auf die Sicherheit auswirken: 
+Dazu gehören: 
+- Das Netzwerk kann Integrität und Vertraulichkeit der Daten beeinträchtigen
+
+- Die Hardware kann Leistung, Zuverlässigkeit und Kompatibilität beeinflussen.
+
+- Das Betriebssystem kann Benutzerfreundlichkeit und Sicherheit beeinträchtigen.
+
+
+Diese Umgebungsfaktoren können aus verschiedenen Gründen Bugs verursachen: 
+- Änderungen können Funktionalitäten und Abhängigkeiten ändern, die sich auf die Sicherheit auswirken.
+- Interaktion und Integration kann neue Herausforderungen bieten, da über Abhängigkeiten unsicherer Code integriert werden kann.
+- Variationen. Software kann in unterschiedlichen Umgebungen unterschiedlich funktionieren.
+
+  Um diese Faktoren zu vermeiden sollten Entwickler:
+  - Änderungen und Updates Überwachen
+  - Wechselwirkungen überprüfen
+  - Software auf verschiedene Umgebungen optimieren.
+
+
+Der Schweregrad von Bugs hängt ab von: 
+- Typ
+- Ort und Umfang
+- Häufigkeit
+
+Der Schweregrad von Bugs wird in der Regel wie folgt bestimmt: 
+- Identifizierung des Bugs
+- Bewertung der Auswirkungen auf Funktionalität
+- Zuweisung eines Schweregrads
+- Priorisierung der Behebung
+- Regelmäßige erneute Behebung
+
+Eine typische Skala für die Schwere ist: 
+Blocker S1: Software kann nicht verwendet werde 
+Kritisch S2: Fehler in geschäftskritischer Funktion
+Schwer S3: Fehler in wesentlichem Teil, der aber nicht Nutzung und Testen verhindert
+Geringfügig S4: Kleiner Teil der Funktionalität wird beeinträchtigt führt aber z.Bsp. nur zu kosmetischen Problemen 
+Trivial S5: Vernachlässigbare Auswirkungen 
+
+Statische Analysetools zur Behebung von Fehlern sind: 
+- Compiler
+- Linter (Stil und Qualität)
+- Code Analyser (Struktur und Logik, können Komplexitäts und Redundanzfehler finden)
+
+Dynamische Analysetools sind: 
+- Debugger
+- Profiler (Messen von Leistung und Effizienz, können Memory Leaks nd Ressourcenverbrauch finden)
+- Test-Tools
+
+Code-Review 
+- Peer-Review überprüft Code durch andere Entwickler
+- Expert-Review überprüft Code durch (externe) Experten
+- Formal-Review überprüft Coe nach einem definierten Prozess oder Verfahren 
 
 # 6. Projektmanagement
 ## 6.1 Der SDLC
