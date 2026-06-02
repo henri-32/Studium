@@ -1,0 +1,25 @@
+@startuml
+skinparam backgroundColor white
+
+start
+
+:Anforderung erhalten;
+
+while (Anforderung verstanden) is (nein) 
+  :Rückfrage stellen;
+
+  while (Rückfrage verstanden?) is (Nein) 
+    if (Schon 5 mal gefragt) then (ja) 
+      :Seinen Chef fragen, ob er spinnt; 
+      stop 
+    else (Nein) 
+    :Rückfrage stellen; 
+    endif
+  endwhile (Ja) 
+endwhile (Ja) 
+
+:Design umsetzen; 
+
+stop
+
+@enduml

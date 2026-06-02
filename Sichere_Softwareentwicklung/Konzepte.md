@@ -1,4 +1,4 @@
-# 5. Gängige Programmierfehler
+ # 5. Gängige Programmierfehler
 ## 5.1 Klassen von Bugs 
 Häufige Fehler sind: 
 - Unsachgemäße Verwendung der dynamischen Speicherzuweisung und -Freigabe.  

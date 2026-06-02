@@ -1,0 +1,64 @@
+@startuml
+skinparam backgroundColor white
+
+|Reviewer|
+start
+
+:Migrationsbedarf erkennen;
+:Ist-Zustand des Arduino-Builds analysieren;
+:Anforderungen an das Make-basierte Buildsystem definieren;
+
+note right
+Arbeitsergebnis:
+Build-Anforderungskatalog
+end note
+
+|Entwickler|
+:Makefile-Struktur entwerfen;
+:Compiler-/Linker-Flags übertragen;
+
+repeat
+  |Entwickler|
+  :Buildsystem migrieren oder anpassen;
+
+  note right
+  Arbeitsergebnisse:
+  - Makefile
+  - mk/*.mk
+  - angepasste SRC-Listen
+  - Build-Konfiguration
+  end note
+
+  |Build-/Testumgebung|
+  :Build- und Testpipeline ausführen;
+
+  note right
+  Werkzeuge:
+  make, avr-g++, ar,
+  avr-objcopy, GoogleTest
+  end note
+
+  :Build- und Testlogs erzeugen;
+
+  |Entwickler|
+  :Feedback aus Logs auswerten;
+  :Migrationsdokumentation aktualisieren;
+
+  |Reviewer|
+  :Struktur, Nachvollziehbarkeit und Zielerfüllung prüfen;
+
+repeat while (Migration freigabereif?) is (nein) not (ja)
+
+|Entwickler|
+:Migration abschließen;
+
+note right
+Endergebnis:
+Make-basierter Build ist
+dokumentiert, getestet
+und freigegeben.
+end note
+
+stop
+
+@enduml
